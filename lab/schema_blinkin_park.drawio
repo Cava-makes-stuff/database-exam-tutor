@@ -1,0 +1,231 @@
+<mxfile host="app.diagrams.net" modified="2026-06-29T00:00:00.000Z" agent="Codex" version="24.7.17" type="device" pages="2">
+  <diagram id="schema-er-principale" name="Schema ER principale">
+    <mxGraphModel dx="2200" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="m_title" value="Schema E-R principale - Blinkin' Park" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="520" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_note" value="Legenda sintetica: PK = identificatore; le generalizzazioni sono indicate nel testo della relazione. Questo schema e' pensato per essere leggibile all'esposizione, non per sostituire le business rules." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="800" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m_zona" value="&lt;b&gt;ZONA&lt;/b&gt;&lt;br&gt;nome PK&lt;br&gt;area_cittadina&lt;br&gt;tariffa_oraria" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="190" width="190" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_parcheggio" value="&lt;b&gt;PARCHEGGIO&lt;/b&gt;&lt;br&gt;denominazione PK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="330" y="190" width="190" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_garage" value="&lt;b&gt;GARAGE&lt;/b&gt;&lt;br&gt;orario_apertura" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="610" y="130" width="180" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_aperto" value="&lt;b&gt;PARCHEGGIO_APERTO&lt;/b&gt;&lt;br&gt;nota" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="610" y="250" width="180" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_amm" value="&lt;b&gt;AMMISSIBILITA&lt;/b&gt;&lt;br&gt;capienza&lt;br&gt;posti_disponibili" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="900" y="190" width="190" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_cat" value="&lt;b&gt;CATEGORIA_VEICOLO&lt;/b&gt;&lt;br&gt;nome PK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="190" width="200" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_veicolo" value="&lt;b&gt;VEICOLO&lt;/b&gt;&lt;br&gt;targa PK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="190" width="170" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m_utente" value="&lt;b&gt;UTENTE&lt;/b&gt;&lt;br&gt;codice_fiscale PK&lt;br&gt;nome&lt;br&gt;cognome&lt;br&gt;email&lt;br&gt;telefono opz." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="430" width="210" height="125" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_abbonamento" value="&lt;b&gt;ABBONAMENTO_ANNUALE&lt;/b&gt;&lt;br&gt;inizio_validita&lt;br&gt;fine_validita&lt;br&gt;tariffa_fissa" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="350" y="420" width="220" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_permanenza" value="&lt;b&gt;PERMANENZA&lt;/b&gt;&lt;br&gt;ora_inizio&lt;br&gt;ora_fine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="420" width="190" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_biglietto" value="&lt;b&gt;BIGLIETTO_SINGOLO&lt;/b&gt;&lt;br&gt;tariffa_oraria_applicata&lt;br&gt;importo_pagato&lt;br&gt;inizio/fine_validita" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="940" y="420" width="230" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_parametro" value="&lt;b&gt;PARAMETRO_VALUTAZIONE&lt;/b&gt;&lt;br&gt;nome PK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="390" width="230" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_valutazione" value="&lt;b&gt;VALUTAZIONE&lt;/b&gt;&lt;br&gt;data_valutazione&lt;br&gt;giudizio" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="520" width="190" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_sconto" value="&lt;b&gt;SCONTO&lt;/b&gt;&lt;br&gt;descrizione&lt;br&gt;percentuale&lt;br&gt;inizio/fine_validita" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="450" width="210" height="105" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m_dipendente" value="&lt;b&gt;DIPENDENTE&lt;/b&gt;&lt;br&gt;codice_fiscale PK&lt;br&gt;nome&lt;br&gt;cognome&lt;br&gt;email_aziendale" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="760" width="220" height="115" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_operatore" value="&lt;b&gt;OPERATORE_GARAGE&lt;/b&gt;&lt;br&gt;ruolo di dipendente" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="360" y="690" width="220" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_controllore" value="&lt;b&gt;CONTROLLORE&lt;/b&gt;&lt;br&gt;ruolo di dipendente" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="360" y="850" width="220" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_ass_garage" value="&lt;b&gt;ASSEGNAZIONE_GARAGE&lt;/b&gt;&lt;br&gt;operatore assegnato a garage" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="690" y="680" width="240" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_resp" value="&lt;b&gt;RESPONSABILITA_GARAGE&lt;/b&gt;&lt;br&gt;un responsabile per garage" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="690" y="800" width="240" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_turno" value="&lt;b&gt;TURNO_CONTROLLO&lt;/b&gt;&lt;br&gt;inizio&lt;br&gt;fine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="850" width="200" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_anomalia" value="&lt;b&gt;ANOMALIA&lt;/b&gt;&lt;br&gt;istante&lt;br&gt;tipo&lt;br&gt;descrizione" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="780" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="m_sanzione" value="&lt;b&gt;SANZIONE&lt;/b&gt;&lt;br&gt;data_sanzione&lt;br&gt;motivo&lt;br&gt;importo" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="940" width="200" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="me1" value="localizza 1:N" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_zona" target="m_parcheggio"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me2" value="specializza" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=11;" edge="1" parent="1" source="m_parcheggio" target="m_garage"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me3" value="specializza" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=11;" edge="1" parent="1" source="m_parcheggio" target="m_aperto"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me4" value="definisce N:M" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_parcheggio" target="m_amm"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me5" value="riguarda" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_amm" target="m_cat"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me6" value="classifica" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_cat" target="m_veicolo"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me7" value="possiede" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_utente" target="m_veicolo"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me8" value="effettua" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_veicolo" target="m_permanenza"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me9" value="ospita" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_parcheggio" target="m_permanenza"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me10" value="coperta da 0/1" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_permanenza" target="m_biglietto"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me11" value="intestatario" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_utente" target="m_abbonamento"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me12" value="copre" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_abbonamento" target="m_permanenza"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me13" value="esprime" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_utente" target="m_valutazione"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me14" value="riceve" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_parcheggio" target="m_valutazione"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me15" value="misura" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_parametro" target="m_valutazione"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me16" value="riceve" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_utente" target="m_sconto"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me17" value="eventuale vincolo" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_sconto" target="m_parcheggio"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me18" value="ruolo" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=11;" edge="1" parent="1" source="m_dipendente" target="m_operatore"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me19" value="ruolo" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=11;" edge="1" parent="1" source="m_dipendente" target="m_controllore"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me20" value="assegna" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_garage" target="m_ass_garage"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me21" value="lavora in" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_operatore" target="m_ass_garage"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me22" value="responsabile" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_garage" target="m_resp"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me23" value="gestisce" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_operatore" target="m_resp"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me24" value="svolge" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_controllore" target="m_turno"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me25" value="su aperto" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_aperto" target="m_turno"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me26" value="rileva" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_turno" target="m_anomalia"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me27" value="emette" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_controllore" target="m_sanzione"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="me28" value="riguarda" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="m_permanenza" target="m_sanzione"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="schema-er-ristrutturato" name="Schema ER ristrutturato">
+    <mxGraphModel dx="2200" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="r_title" value="Schema E-R ristrutturato - Blinkin' Park" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="560" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_note" value="Le generalizzazioni sono eliminate: Parcheggio contiene il tipo; Dipendente resta separato dai ruoli OperatoreGarage e Controllore. Le chiavi tecniche sono introdotte nello schema logico." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="850" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_zona" value="&lt;b&gt;ZONA&lt;/b&gt;&lt;br&gt;nome_zona PK&lt;br&gt;area_cittadina&lt;br&gt;tariffa_oraria" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="190" width="200" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_parcheggio" value="&lt;b&gt;PARCHEGGIO&lt;/b&gt;&lt;br&gt;id_parcheggio PK&lt;br&gt;denominazione UNIQUE&lt;br&gt;tipo_parcheggio&lt;br&gt;orario_apertura&lt;br&gt;nome_zona FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="350" y="170" width="240" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_amm" value="&lt;b&gt;AMMISSIBILITA&lt;/b&gt;&lt;br&gt;id_parcheggio PK/FK&lt;br&gt;nome_categoria PK/FK&lt;br&gt;capienza&lt;br&gt;posti_disponibili" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="700" y="175" width="240" height="125" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_categoria" value="&lt;b&gt;CATEGORIAVEICOLO&lt;/b&gt;&lt;br&gt;nome_categoria PK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="190" width="220" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_veicolo" value="&lt;b&gt;VEICOLO&lt;/b&gt;&lt;br&gt;targa PK&lt;br&gt;nome_categoria FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="190" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_utente" value="&lt;b&gt;UTENTE&lt;/b&gt;&lt;br&gt;codice_fiscale PK&lt;br&gt;nome&lt;br&gt;cognome&lt;br&gt;email UNIQUE&lt;br&gt;telefono" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="430" width="220" height="125" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_possesso" value="&lt;b&gt;POSSESSO&lt;/b&gt;&lt;br&gt;codice_fiscale PK/FK&lt;br&gt;targa PK/FK&lt;br&gt;UNIQUE(targa)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="380" y="440" width="220" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_permanenza" value="&lt;b&gt;PERMANENZA&lt;/b&gt;&lt;br&gt;id_permanenza PK&lt;br&gt;targa FK&lt;br&gt;id_parcheggio FK&lt;br&gt;ora_inizio&lt;br&gt;ora_fine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="700" y="420" width="220" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_biglietto" value="&lt;b&gt;BIGLIETTOSINGOLO&lt;/b&gt;&lt;br&gt;id_biglietto PK&lt;br&gt;id_permanenza FK UNIQUE&lt;br&gt;tariffa_oraria_applicata&lt;br&gt;importo_pagato" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="420" width="250" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_abbonamento" value="&lt;b&gt;ABBONAMENTOANNUALE&lt;/b&gt;&lt;br&gt;id_abbonamento PK&lt;br&gt;codice_fiscale FK&lt;br&gt;inizio_validita&lt;br&gt;fine_validita&lt;br&gt;tariffa_fissa" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="410" width="250" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_usoabb" value="&lt;b&gt;USOABBONAMENTO&lt;/b&gt;&lt;br&gt;id_permanenza PK/FK&lt;br&gt;id_abbonamento FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="430" width="230" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_parametro" value="&lt;b&gt;PARAMETROVALUTAZIONE&lt;/b&gt;&lt;br&gt;nome_parametro PK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="670" width="240" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_valutazione" value="&lt;b&gt;VALUTAZIONE&lt;/b&gt;&lt;br&gt;id_valutazione PK&lt;br&gt;codice_fiscale FK&lt;br&gt;id_parcheggio FK&lt;br&gt;nome_parametro FK&lt;br&gt;giudizio" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="380" y="640" width="230" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_sconto" value="&lt;b&gt;SCONTO&lt;/b&gt;&lt;br&gt;id_sconto PK&lt;br&gt;descrizione&lt;br&gt;percentuale&lt;br&gt;inizio/fine_validita&lt;br&gt;id_parcheggio FK opz." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="700" y="640" width="240" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_ass_sconto" value="&lt;b&gt;ASSEGNAZIONESCONTO&lt;/b&gt;&lt;br&gt;codice_fiscale PK/FK&lt;br&gt;id_sconto PK/FK&lt;br&gt;data_assegnazione" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="660" width="250" height="105" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r_dipendente" value="&lt;b&gt;DIPENDENTE&lt;/b&gt;&lt;br&gt;codice_fiscale PK&lt;br&gt;nome&lt;br&gt;cognome&lt;br&gt;email_aziendale UNIQUE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="970" width="240" height="115" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_operatore" value="&lt;b&gt;OPERATOREGARAGE&lt;/b&gt;&lt;br&gt;codice_fiscale PK/FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="390" y="900" width="230" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_controllore" value="&lt;b&gt;CONTROLLORE&lt;/b&gt;&lt;br&gt;codice_fiscale PK/FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="390" y="1060" width="230" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_ass_operatore" value="&lt;b&gt;ASSEGNAZIONEOPERATORE&lt;/b&gt;&lt;br&gt;id_garage PK/FK&lt;br&gt;codice_fiscale PK/FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="720" y="890" width="260" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_responsabile" value="&lt;b&gt;RESPONSABILEGARAGE&lt;/b&gt;&lt;br&gt;id_garage PK/FK&lt;br&gt;codice_fiscale FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="720" y="1020" width="260" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_turno" value="&lt;b&gt;TURNOCONTROLLO&lt;/b&gt;&lt;br&gt;id_turno PK&lt;br&gt;codice_fiscale FK&lt;br&gt;id_parcheggio FK&lt;br&gt;inizio&lt;br&gt;fine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="1010" width="240" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_anomalia" value="&lt;b&gt;ANOMALIA&lt;/b&gt;&lt;br&gt;id_anomalia PK&lt;br&gt;id_turno FK&lt;br&gt;istante&lt;br&gt;tipo&lt;br&gt;descrizione" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="930" width="230" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="r_sanzione" value="&lt;b&gt;SANZIONE&lt;/b&gt;&lt;br&gt;id_sanzione PK&lt;br&gt;codice_fiscale FK&lt;br&gt;id_permanenza FK&lt;br&gt;motivo&lt;br&gt;importo" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="1110" width="230" height="130" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="re1" value="FK nome_zona" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_zona" target="r_parcheggio"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re2" value="PK/FK" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_parcheggio" target="r_amm"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re3" value="PK/FK" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_categoria" target="r_amm"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re4" value="FK categoria" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_categoria" target="r_veicolo"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re5" value="possiede" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_utente" target="r_possesso"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re6" value="veicolo" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_possesso" target="r_veicolo"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re7" value="FK targa" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_veicolo" target="r_permanenza"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re8" value="FK parcheggio" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_parcheggio" target="r_permanenza"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re9" value="FK unique" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_permanenza" target="r_biglietto"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re10" value="intestatario" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_utente" target="r_abbonamento"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re11" value="uso" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_abbonamento" target="r_usoabb"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re12" value="permanenza" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_permanenza" target="r_usoabb"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re13" value="FK utente" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_utente" target="r_valutazione"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re14" value="FK parametro" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_parametro" target="r_valutazione"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re15" value="FK parcheggio" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_parcheggio" target="r_valutazione"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re16" value="opzionale" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_parcheggio" target="r_sconto"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re17" value="assegna" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_utente" target="r_ass_sconto"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re18" value="sconto" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_sconto" target="r_ass_sconto"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re19" value="ruolo" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=11;" edge="1" parent="1" source="r_dipendente" target="r_operatore"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re20" value="ruolo" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=11;" edge="1" parent="1" source="r_dipendente" target="r_controllore"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re21" value="operatore" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_operatore" target="r_ass_operatore"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re22" value="garage" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_parcheggio" target="r_ass_operatore"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re23" value="FK composta" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_ass_operatore" target="r_responsabile"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re24" value="controllore" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_controllore" target="r_turno"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re25" value="parcheggio aperto via BR" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_parcheggio" target="r_turno"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re26" value="turno" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_turno" target="r_anomalia"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re27" value="emette" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_controllore" target="r_sanzione"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="re28" value="riguarda" style="endArrow=none;html=1;rounded=0;strokeColor=#333333;fontSize=11;" edge="1" parent="1" source="r_permanenza" target="r_sanzione"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

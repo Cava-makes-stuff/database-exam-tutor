@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DB Exam Trainer</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">DB</span>
+          <div>
+            <h1>DB Exam Trainer</h1>
+            <p id="sessionMeta">Allenamento locale</p>
+          </div>
+        </div>
+
+        <nav class="segmented" aria-label="Sezione esercizi">
+          <button class="segment is-active" type="button" data-section="sql">SQL</button>
+          <button class="segment" type="button" data-section="theory">Teoria</button>
+        </nav>
+
+        <div class="topbar-controls">
+          <label>
+            <span>Difficolta</span>
+            <select id="difficultySelect">
+              <option value="all">Tutte</option>
+              <option value="easy">Facile</option>
+              <option value="medium">Medio</option>
+              <option value="hard">Difficile</option>
+            </select>
+          </label>
+          <label>
+            <span>Appello</span>
+            <select id="examSelect"></select>
+          </label>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="exercise-rail" aria-label="Esercizi">
+          <div class="progress-panel">
+            <div class="progress-row">
+              <span>Totale</span>
+              <strong id="overallProgress">0%</strong>
+            </div>
+            <div class="progress-track"><span id="overallProgressBar"></span></div>
+            <div class="mini-stats" id="miniStats"></div>
+          </div>
+          <div id="exerciseList" class="exercise-list"></div>
+        </aside>
+
+        <section class="exercise-pane" aria-live="polite">
+          <div class="exercise-heading">
+            <div>
+              <p id="exerciseKicker" class="kicker"></p>
+              <h2 id="exerciseTitle">Caricamento...</h2>
+            </div>
+            <div class="exercise-actions">
+              <button id="prevExercise" class="icon-button" type="button" title="Esercizio precedente">←</button>
+              <button id="nextExercise" class="icon-button" type="button" title="Esercizio successivo">→</button>
+              <button id="schemaOpen" class="secondary-button mobile-only" type="button">Schema</button>
+            </div>
+          </div>
+
+          <div class="prompt-block">
+            <h3>Consegna</h3>
+            <p id="exercisePrompt"></p>
+          </div>
+
+          <div id="sqlEditorBlock" class="answer-block">
+            <div class="editor-label">
+              <h3>La tua risposta SQL</h3>
+              <span>syntax highlighting locale</span>
+            </div>
+            <div class="sql-editor" id="sqlEditor">
+              <pre aria-hidden="true"><code id="sqlHighlight"></code></pre>
+              <textarea id="sqlAnswer" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+            </div>
+          </div>
+
+          <div id="theoryEditorBlock" class="answer-block is-hidden">
+            <div class="editor-label">
+              <h3>La tua risposta teoria</h3>
+              <span>simboli e preview</span>
+            </div>
+            <div class="symbol-keyboard" id="symbolKeyboard" aria-label="Tastiera simboli"></div>
+            <textarea id="theoryAnswer" class="theory-textarea" spellcheck="false"></textarea>
+            <div class="preview-block">
+              <h3>Preview</h3>
+              <div id="theoryPreview" class="theory-preview"></div>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button id="checkAnswer" class="primary-button" type="button">Verifica</button>
+            <button id="toggleSolution" class="secondary-button" type="button">Mostra soluzione prof</button>
+            <button id="copyContext" class="secondary-button" type="button">Copia contesto</button>
+            <button id="resetAnswer" class="ghost-button" type="button">Reset</button>
+          </div>
+
+          <section id="feedbackPanel" class="feedback-panel" aria-live="polite"></section>
+          <section id="solutionPanel" class="solution-panel is-hidden"></section>
+        </section>
+
+        <aside class="schema-panel" id="schemaPanel">
+          <div class="schema-header">
+            <div>
+              <p class="kicker">Schema fisso</p>
+              <h2 id="databaseName">Database</h2>
+            </div>
+            <button id="schemaToggle" class="icon-button mobile-only" type="button" title="Mostra o nascondi schema">⇄</button>
+          </div>
+          <p id="databaseDescription" class="schema-description"></p>
+          <div id="schemaRelations" class="schema-relations"></div>
+          <div id="schemaConstraints" class="schema-section"></div>
+          <div id="schemaNotes" class="schema-section"></div>
+        </aside>
+      </main>
+
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
