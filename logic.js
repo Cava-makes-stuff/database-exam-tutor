@@ -39,6 +39,104 @@ function clauseLabel(clause) {
   return `Clausola ${clause}`;
 }
 
+const EDITOR_SURROUND_PAIRS = new Map([
+  ['(', ')'],
+  ['[', ']'],
+  ['{', '}'],
+  ["'", "'"],
+  ['"', '"'],
+  ['`', '`']
+]);
+const EDITOR_BLOCK_PAIRS = new Map([
+  ['(', ')'],
+  ['[', ']'],
+  ['{', '}']
+]);
+
+function clampSelection(value, position) {
+  const number = Number.isFinite(position) ? position : 0;
+  return Math.max(0, Math.min(value.length, number));
+}
+
+function lineIndentBefore(value, position) {
+  const lineStart = value.lastIndexOf('\n', position - 1) + 1;
+  return value.slice(lineStart, position).match(/^\s*/)?.[0] || '';
+}
+
+function isInsideOpenBlock(value, position) {
+  const closingStack = [];
+  const blockOpenings = new Set(EDITOR_BLOCK_PAIRS.keys());
+
+  for (const char of value.slice(0, position)) {
+    if (blockOpenings.has(char)) {
+      closingStack.push(EDITOR_BLOCK_PAIRS.get(char));
+      continue;
+    }
+
+    if (char === closingStack.at(-1)) {
+      closingStack.pop();
+    }
+  }
+
+  return closingStack.length > 0;
+}
+
+export function applyEditorKey({ value = '', selectionStart = 0, selectionEnd = selectionStart, key = '' } = {}) {
+  const text = String(value);
+  const start = clampSelection(text, selectionStart);
+  const end = clampSelection(text, selectionEnd);
+  const before = text.slice(0, start);
+  const selected = text.slice(start, end);
+  const after = text.slice(end);
+
+  if (key === 'Tab') {
+    const nextValue = `${before}\t${after}`;
+    const nextPosition = start + 1;
+    return { handled: true, value: nextValue, selectionStart: nextPosition, selectionEnd: nextPosition };
+  }
+
+  const close = EDITOR_SURROUND_PAIRS.get(key);
+  if (close && start !== end) {
+    const nextValue = `${before}${key}${selected}${close}${after}`;
+    return {
+      handled: true,
+      value: nextValue,
+      selectionStart: start + 1,
+      selectionEnd: end + 1
+    };
+  }
+
+  if (key === 'Enter' && start === end) {
+    const opening = text[start - 1];
+    const closing = text[start];
+    if (EDITOR_BLOCK_PAIRS.has(opening) && EDITOR_BLOCK_PAIRS.get(opening) === closing) {
+      const indent = lineIndentBefore(text, start - 1);
+      const insertion = `\n${indent}\t\n${indent}`;
+      const nextPosition = start + indent.length + 2;
+      return {
+        handled: true,
+        value: `${before}${insertion}${after}`,
+        selectionStart: nextPosition,
+        selectionEnd: nextPosition
+      };
+    }
+
+    if (isInsideOpenBlock(text, start)) {
+      const indent = lineIndentBefore(text, start);
+      const insertion = `\n${indent}\t`;
+      const nextPosition = start + insertion.length;
+      return {
+        handled: true,
+        value: `${before}${insertion}${after}`,
+        selectionStart: nextPosition,
+        selectionEnd: nextPosition
+      };
+    }
+  }
+
+  return { handled: false, value: text, selectionStart: start, selectionEnd: end };
+}
+
 export function evaluateSqlAnswer(answer = '', rubric = {}) {
   const features = extractSqlFeatures(answer);
   const text = features.normalized;
@@ -107,6 +205,83 @@ const THEORY_SHORTCUTS = new Map([
   ['\\intersect', '∩']
 ]);
 
+const THEORY_KEYBOARDS = {
+  relational: [
+    ['π', 'π'],
+    ['σ', 'σ'],
+    ['ρ', 'ρ'],
+    ['⋈', '⋈'],
+    ['⋈_{...}', '⋈_{...}', true],
+    ['×', '×'],
+    ['÷', '÷'],
+    ['−', '−'],
+    ['∪', '∪'],
+    ['∩', '∩'],
+    ['∀', '∀'],
+    ['∃', '∃'],
+    ['¬', '¬'],
+    ['∧', '∧'],
+    ['∨', '∨'],
+    ['⇒', '⇒'],
+    ['→', '→'],
+    ['≠', '≠'],
+    ['≤', '≤'],
+    ['≥', '≥'],
+    ['∈', '∈'],
+    ['∉', '∉'],
+    ['⊆', '⊆'],
+    ['\\pi_{...}(...)', '\\pi_{...}(...)', true],
+    ['\\sigma_{...}(...)', '\\sigma_{...}(...)', true],
+    ['\\rho_{a<-b}(...)', '\\rho_{a<-b}(...)', true],
+    ['{ x | ... }', '{ x | ... }', true]
+  ],
+  dependencies: [
+    ['→', '→'],
+    ['⇒', '⇒'],
+    ['⊆', '⊆'],
+    ['∈', '∈'],
+    ['∉', '∉'],
+    ['∪', '∪'],
+    ['∩', '∩'],
+    ['A+', 'A+', true],
+    ['X → Y', 'X → Y', true],
+    ['R(...)', 'R(...)', true],
+    ['3NF', '3NF', true],
+    ['BCNF', 'BCNF', true]
+  ],
+  optimization: [
+    ['σ', 'σ'],
+    ['π', 'π'],
+    ['⋈', '⋈'],
+    ['⋈_{...}', '⋈_{...}', true],
+    ['×', '×'],
+    ['∧', '∧'],
+    ['∨', '∨'],
+    ['≠', '≠'],
+    ['≤', '≤'],
+    ['≥', '≥'],
+    ['\\sigma_{...}(...)', '\\sigma_{...}(...)', true],
+    ['costo ≈', 'costo ≈ ', true],
+    ['tuple', 'tuple', true]
+  ],
+  transactions: [
+    ['LS(x)', 'LS(x)', true],
+    ['LX(x)', 'LX(x)', true],
+    ['UL(x)', 'UL(x)', true],
+    ['r1(x)', 'r1(x)', true],
+    ['w1(x)', 'w1(x)', true],
+    ['2PL', '2PL', true],
+    ['→', '→'],
+    ['≠', '≠']
+  ]
+};
+
+export function getTheoryKeyboard(exercise = {}) {
+  const type = exercise.theoryType || 'relational';
+  const keyboard = THEORY_KEYBOARDS[type] || THEORY_KEYBOARDS.relational;
+  return keyboard.map(([label, value, template = false]) => ({ label, value, template }));
+}
+
 export function renderTheoryPreview(input = '') {
   let output = String(input);
   for (const [shortcut, symbol] of THEORY_SHORTCUTS) {
@@ -118,33 +293,10 @@ export function renderTheoryPreview(input = '') {
 export function renderTheoryPreviewHtml(input = '') {
   const escaped = escapeHtml(renderTheoryPreview(input));
   return escaped
-    .replace(/([πσρ])_\{([^{}]+)\}/g, '<span class="math-op">$1<sub>$2</sub></span>')
+    .replace(/([πσρ⋈])_\{([^{}]*)\}/g, '<span class="math-op">$1<sub>$2</sub></span>')
     .replace(/\b([A-Za-z][A-Za-z0-9]*)_\{([^{}]+)\}/g, '$1<sub>$2</sub>')
     .replace(/\b([A-Za-z][A-Za-z0-9]*)\^\{([^{}]+)\}/g, '$1<sup>$2</sup>')
     .replace(/\n/g, '<br>');
-}
-
-export function evaluateTheoryAnswer(answer = '', rubric = {}) {
-  const preview = renderTheoryPreview(answer);
-  const normalized = preview.toLowerCase();
-  const items = [];
-
-  for (const symbol of rubric.expectedSymbols || []) {
-    items.push(item(`Simbolo ${symbol}`, preview.includes(symbol) ? 'present' : 'missing'));
-  }
-
-  for (const keyword of rubric.expectedKeywords || []) {
-    items.push(item(`Keyword ${keyword}`, normalized.includes(keyword.toLowerCase()) ? 'present' : 'missing'));
-  }
-
-  for (const concept of rubric.expectedConcepts || []) {
-    const present = (concept.patterns || []).every((pattern) => normalized.includes(String(pattern).toLowerCase()));
-    items.push(item(concept.label, present ? 'present' : 'missing', concept.hint || ''));
-  }
-
-  const positive = items.filter((entry) => entry.status === 'present').length;
-  const score = items.length ? Math.round((positive / items.length) * 100) : 0;
-  return { score, items, preview };
 }
 
 function formatSchema(database) {
@@ -160,6 +312,15 @@ function formatSchema(database) {
 
 export function getProfessorSolution(exercise = {}) {
   return exercise.profSolution || exercise.solution || '(non disponibile)';
+}
+
+export function renderProfessorSolutionHtml(exercise = {}) {
+  const solution = getProfessorSolution(exercise);
+  if (exercise.section === 'sql') {
+    return `<pre class="prof-solution-code sql-solution"><code>${highlightSql(solution)}</code></pre>`;
+  }
+
+  return `<pre class="prof-solution-code theory-solution">${escapeHtml(solution)}</pre>`;
 }
 
 export function renderRelationSchemaHtml(relation = {}) {

@@ -398,7 +398,7 @@ button:hover {
   font-family: var(--mono);
   font-size: 0.9rem;
   line-height: 1.55;
-  tab-size: 2;
+  tab-size: 4;
   white-space: pre-wrap;
   overflow: auto;
 }
@@ -481,6 +481,7 @@ button:hover {
   color: var(--ink);
   font-family: var(--mono);
   line-height: 1.55;
+  tab-size: 4;
 }
 
 .preview-block {
@@ -497,6 +498,7 @@ button:hover {
   font-family: var(--mono);
   font-size: 0.98rem;
   line-height: 1.8;
+  tab-size: 4;
   white-space: pre-wrap;
 }
 
@@ -533,6 +535,17 @@ button:hover {
   background: var(--surface-2);
 }
 
+.solution-panel {
+  background: oklch(0.155 0.016 280);
+}
+
+.solution-panel h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .feedback-summary {
   display: flex;
   align-items: center;
@@ -557,11 +570,23 @@ button:hover {
   color: var(--danger);
 }
 
-.solution-panel pre {
+.prof-solution-code {
   margin: 10px 0 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  background: oklch(0.115 0.01 280);
   color: var(--ink);
   font-family: var(--mono);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  tab-size: 4;
   white-space: pre-wrap;
+  overflow: auto;
+}
+
+.sql-solution code {
+  font-family: inherit;
 }
 
 .schema-panel {

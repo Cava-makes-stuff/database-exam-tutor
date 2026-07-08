@@ -3,44 +3,17 @@ import {
   difficultyLabel,
   escapeHtml,
   evaluateSqlAnswer,
-  evaluateTheoryAnswer,
-  getProfessorSolution,
+  applyEditorKey,
+  getTheoryKeyboard,
   highlightSql,
+  renderProfessorSolutionHtml,
   renderRelationSchemaHtml,
-  renderTheoryPreview,
   renderTheoryPreviewHtml,
   summarizeProgress
 } from './logic.js';
 
 const STORAGE_KEY = 'db-exam-trainer-state-v1';
-const SYMBOLS = [
-  ['π', 'π'],
-  ['σ', 'σ'],
-  ['ρ', 'ρ'],
-  ['⋈', '⋈'],
-  ['÷', '÷'],
-  ['−', '−'],
-  ['∪', '∪'],
-  ['∩', '∩'],
-  ['∀', '∀'],
-  ['∃', '∃'],
-  ['¬', '¬'],
-  ['∧', '∧'],
-  ['∨', '∨'],
-  ['⇒', '⇒'],
-  ['→', '→'],
-  ['≠', '≠'],
-  ['≤', '≤'],
-  ['≥', '≥'],
-  ['∈', '∈'],
-  ['∉', '∉'],
-  ['⊆', '⊆'],
-  ['\\pi_{...}(...)', '\\pi_{...}(...)', true],
-  ['\\sigma_{...}(...)', '\\sigma_{...}(...)', true],
-  ['\\rho_{a<-b}(...)', '\\rho_{a<-b}(...)', true],
-  ['{ x | ... }', '{ x | ... }', true],
-  ['X → Y', 'X → Y', true]
-];
+const EDITOR_KEY_SHORTCUTS = new Set(['Tab', 'Enter', '(', '[', '{', "'", '"', '`']);
 
 const els = {
   sessionMeta: document.querySelector('#sessionMeta'),
@@ -122,7 +95,6 @@ function saveLocalState() {
 
 async function boot() {
   loadLocalState();
-  renderKeyboard();
 
   try {
     const response = await fetch('./exercises.json');
@@ -177,6 +149,7 @@ function bindEvents() {
     saveDraft(els.sqlAnswer.value);
     syncSqlHighlight();
   });
+  bindEditorKeys(els.sqlAnswer);
 
   els.sqlAnswer.addEventListener('scroll', () => {
     const pre = els.sqlHighlight.parentElement;
@@ -188,6 +161,7 @@ function bindEvents() {
     saveDraft(els.theoryAnswer.value);
     syncTheoryPreview();
   });
+  bindEditorKeys(els.theoryAnswer);
 
   els.checkAnswer.addEventListener('click', checkCurrentAnswer);
   els.toggleSolution.addEventListener('click', toggleSolution);
@@ -292,12 +266,15 @@ function renderCurrentExercise() {
   els.exercisePrompt.textContent = exercise.prompt;
   els.sqlEditorBlock.classList.toggle('is-hidden', exercise.section !== 'sql');
   els.theoryEditorBlock.classList.toggle('is-hidden', exercise.section !== 'theory');
+  els.checkAnswer.classList.toggle('is-hidden', exercise.section === 'theory');
+  els.feedbackPanel.classList.toggle('is-hidden', exercise.section === 'theory');
 
   const draft = state.drafts[exercise.id] || '';
   if (exercise.section === 'sql') {
     els.sqlAnswer.value = draft;
     syncSqlHighlight();
   } else {
+    renderKeyboard(exercise);
     els.theoryAnswer.value = draft;
     syncTheoryPreview();
   }
@@ -325,8 +302,8 @@ function syncTheoryPreview() {
   els.theoryPreview.innerHTML = renderTheoryPreviewHtml(els.theoryAnswer.value);
 }
 
-function renderKeyboard() {
-  els.symbolKeyboard.innerHTML = SYMBOLS.map(([label, value, template]) => {
+function renderKeyboard(exercise) {
+  els.symbolKeyboard.innerHTML = getTheoryKeyboard(exercise).map(({ label, value, template }) => {
     return `<button class="symbol-key ${template ? 'template' : ''}" type="button" data-value="${escapeHtml(value)}">${escapeHtml(label)}</button>`;
   }).join('');
 
@@ -344,6 +321,28 @@ function insertAtCursor(textarea, value) {
   textarea.dispatchEvent(new Event('input'));
 }
 
+function bindEditorKeys(textarea) {
+  textarea.addEventListener('keydown', (event) => {
+    const editorKey = EDITOR_KEY_SHORTCUTS.has(event.key);
+    if (event.metaKey || (event.shiftKey && event.key === 'Tab')) return;
+    if ((event.ctrlKey || event.altKey) && !editorKey) return;
+
+    const result = applyEditorKey({
+      value: textarea.value,
+      selectionStart: textarea.selectionStart,
+      selectionEnd: textarea.selectionEnd,
+      key: event.key
+    });
+
+    if (!result.handled) return;
+    event.preventDefault();
+    textarea.value = result.value;
+    textarea.selectionStart = result.selectionStart;
+    textarea.selectionEnd = result.selectionEnd;
+    textarea.dispatchEvent(new Event('input'));
+  });
+}
+
 function currentAnswer() {
   const exercise = currentExercise();
   return exercise?.section === 'sql' ? els.sqlAnswer.value : els.theoryAnswer.value;
@@ -359,11 +358,13 @@ function saveDraft(value) {
 function checkCurrentAnswer() {
   const exercise = currentExercise();
   if (!exercise) return;
+  if (exercise.section === 'theory') {
+    state.solutionVisible = true;
+    renderSolution();
+    return;
+  }
 
-  const result =
-    exercise.section === 'sql'
-      ? evaluateSqlAnswer(currentAnswer(), exercise.rubric)
-      : evaluateTheoryAnswer(currentAnswer(), exercise.rubric);
+  const result = evaluateSqlAnswer(currentAnswer(), exercise.rubric);
 
   state.latestFeedback = result.items;
   state.progress[exercise.id] = {
@@ -413,7 +414,7 @@ function renderSolution() {
 
   els.solutionPanel.classList.remove('is-hidden');
   els.toggleSolution.textContent = 'Nascondi soluzione prof';
-  els.solutionPanel.innerHTML = `<h3>Soluzione dei prof</h3><pre>${escapeHtml(getProfessorSolution(exercise))}</pre>`;
+  els.solutionPanel.innerHTML = `<h3>Soluzione dei prof</h3>${renderProfessorSolutionHtml(exercise)}`;
 }
 
 async function copyCurrentContext() {

@@ -6,9 +6,49 @@
       "examDate": "2025-06-09",
       "description": "Piattaforma che gestisce referti prodotti da un laboratorio di analisi.",
       "relations": [
-        { "name": "UTENTE", "columns": ["Nome", "Cognome", "Eta", "Sesso"], "primaryKey": ["Nome", "Cognome"] },
-        { "name": "REFERTO", "columns": ["Nome", "Cognome", "Data", "Analisi", "Valore"], "primaryKey": ["Nome", "Cognome", "Data", "Analisi"] },
-        { "name": "ANALISI", "columns": ["Nome", "Tipo", "Digiuno", "Prezzo", "ValoreMin", "ValoreMax"], "primaryKey": ["Nome"] }
+        {
+          "name": "UTENTE",
+          "columns": [
+            "Nome",
+            "Cognome",
+            "Eta",
+            "Sesso"
+          ],
+          "primaryKey": [
+            "Nome",
+            "Cognome"
+          ]
+        },
+        {
+          "name": "REFERTO",
+          "columns": [
+            "Nome",
+            "Cognome",
+            "Data",
+            "Analisi",
+            "Valore"
+          ],
+          "primaryKey": [
+            "Nome",
+            "Cognome",
+            "Data",
+            "Analisi"
+          ]
+        },
+        {
+          "name": "ANALISI",
+          "columns": [
+            "Nome",
+            "Tipo",
+            "Digiuno",
+            "Prezzo",
+            "ValoreMin",
+            "ValoreMax"
+          ],
+          "primaryKey": [
+            "Nome"
+          ]
+        }
       ],
       "constraints": [
         "REFERTO(Nome, Cognome) referenzia UTENTE(Nome, Cognome)",
@@ -26,9 +66,44 @@
       "examDate": "2025-07-09",
       "description": "Base di dati sulle strade e sugli edifici della citta DeeBeeCity.",
       "relations": [
-        { "name": "STRADA", "columns": ["Nome", "Lunghezza", "SensoUnico"], "primaryKey": ["Nome"] },
-        { "name": "INCROCIO", "columns": ["Strada1", "Strada2", "KmStrada1", "KmStrada2"], "primaryKey": ["Strada1", "Strada2"] },
-        { "name": "EDIFICIO", "columns": ["Strada", "NumeroCivico", "Km", "Tipo", "Nome*"], "primaryKey": ["Strada", "NumeroCivico"] }
+        {
+          "name": "STRADA",
+          "columns": [
+            "Nome",
+            "Lunghezza",
+            "SensoUnico"
+          ],
+          "primaryKey": [
+            "Nome"
+          ]
+        },
+        {
+          "name": "INCROCIO",
+          "columns": [
+            "Strada1",
+            "Strada2",
+            "KmStrada1",
+            "KmStrada2"
+          ],
+          "primaryKey": [
+            "Strada1",
+            "Strada2"
+          ]
+        },
+        {
+          "name": "EDIFICIO",
+          "columns": [
+            "Strada",
+            "NumeroCivico",
+            "Km",
+            "Tipo",
+            "Nome*"
+          ],
+          "primaryKey": [
+            "Strada",
+            "NumeroCivico"
+          ]
+        }
       ],
       "constraints": [
         "INCROCIO(Strada1) e INCROCIO(Strada2) referenziano STRADA(Nome)",
@@ -46,10 +121,60 @@
       "examDate": "2025-09-10",
       "description": "Sagra della Pizza all'Ananas con stand, prodotti e ordini.",
       "relations": [
-        { "name": "STAND", "columns": ["NumeroStand", "NomeStand", "TipoStand"], "primaryKey": ["NumeroStand"] },
-        { "name": "PREZZARIO", "columns": ["NumeroStand", "NomeProdotto", "VeganOK", "GlutenFree", "Prezzo"], "primaryKey": ["NumeroStand", "NomeProdotto"] },
-        { "name": "ORDINE", "columns": ["NumeroOrdine", "DataOrdine", "OraOrdine", "TipoPagamento"], "primaryKey": ["NumeroOrdine", "DataOrdine"] },
-        { "name": "LINEAORDINE", "columns": ["NumeroOrdine", "DataOrdine", "NumeroStand", "NomeProdotto", "Quantita"], "primaryKey": ["NumeroOrdine", "DataOrdine", "NumeroStand", "NomeProdotto"] }
+        {
+          "name": "STAND",
+          "columns": [
+            "NumeroStand",
+            "NomeStand",
+            "TipoStand"
+          ],
+          "primaryKey": [
+            "NumeroStand"
+          ]
+        },
+        {
+          "name": "PREZZARIO",
+          "columns": [
+            "NumeroStand",
+            "NomeProdotto",
+            "VeganOK",
+            "GlutenFree",
+            "Prezzo"
+          ],
+          "primaryKey": [
+            "NumeroStand",
+            "NomeProdotto"
+          ]
+        },
+        {
+          "name": "ORDINE",
+          "columns": [
+            "NumeroOrdine",
+            "DataOrdine",
+            "OraOrdine",
+            "TipoPagamento"
+          ],
+          "primaryKey": [
+            "NumeroOrdine",
+            "DataOrdine"
+          ]
+        },
+        {
+          "name": "LINEAORDINE",
+          "columns": [
+            "NumeroOrdine",
+            "DataOrdine",
+            "NumeroStand",
+            "NomeProdotto",
+            "Quantita"
+          ],
+          "primaryKey": [
+            "NumeroOrdine",
+            "DataOrdine",
+            "NumeroStand",
+            "NomeProdotto"
+          ]
+        }
       ],
       "constraints": [
         "PREZZARIO(NumeroStand) referenzia STAND(NumeroStand)",
@@ -67,11 +192,72 @@
       "examDate": "2025-12-17",
       "description": "Frequenza di corsi sportivi, lezioni e prenotazioni.",
       "relations": [
-        { "name": "Partecipante", "columns": ["Codice", "Cognome", "Nome", "Tipo*"], "primaryKey": ["Codice"] },
-        { "name": "Corso", "columns": ["Codice", "Titolo", "TotaleOre"], "primaryKey": ["Codice"] },
-        { "name": "Istruttore", "columns": ["Codice", "Cognome", "Nome", "Qualifica"], "primaryKey": ["Codice"] },
-        { "name": "Lezione", "columns": ["Data", "Ora", "Struttura", "Corso", "Istruttore"], "primaryKey": ["Data", "Ora", "Struttura"] },
-        { "name": "Prenotazione", "columns": ["Data", "Ora", "Struttura", "Partecipante", "Modalita"], "primaryKey": ["Data", "Ora", "Struttura", "Partecipante"] }
+        {
+          "name": "Partecipante",
+          "columns": [
+            "Codice",
+            "Cognome",
+            "Nome",
+            "Tipo*"
+          ],
+          "primaryKey": [
+            "Codice"
+          ]
+        },
+        {
+          "name": "Corso",
+          "columns": [
+            "Codice",
+            "Titolo",
+            "TotaleOre"
+          ],
+          "primaryKey": [
+            "Codice"
+          ]
+        },
+        {
+          "name": "Istruttore",
+          "columns": [
+            "Codice",
+            "Cognome",
+            "Nome",
+            "Qualifica"
+          ],
+          "primaryKey": [
+            "Codice"
+          ]
+        },
+        {
+          "name": "Lezione",
+          "columns": [
+            "Data",
+            "Ora",
+            "Struttura",
+            "Corso",
+            "Istruttore"
+          ],
+          "primaryKey": [
+            "Data",
+            "Ora",
+            "Struttura"
+          ]
+        },
+        {
+          "name": "Prenotazione",
+          "columns": [
+            "Data",
+            "Ora",
+            "Struttura",
+            "Partecipante",
+            "Modalita"
+          ],
+          "primaryKey": [
+            "Data",
+            "Ora",
+            "Struttura",
+            "Partecipante"
+          ]
+        }
       ],
       "constraints": [
         "Lezione(Corso) referenzia Corso(Codice)",
@@ -91,11 +277,68 @@
       "examDate": "2026-01-23",
       "description": "Versione semplificata del FantaSanremo con squadre, leghe, cantanti e punteggi.",
       "relations": [
-        { "name": "Utente", "columns": ["Email", "Nickname", "Cognome", "Nome", "AnnoNascita*"], "primaryKey": ["Email"] },
-        { "name": "Cantante", "columns": ["NomeC", "TitoloCanzone", "Baudi"], "primaryKey": ["NomeC"] },
-        { "name": "Squadra", "columns": ["NomeS", "Lega", "Email"], "primaryKey": ["NomeS", "Lega"] },
-        { "name": "ComposizioneSquadra", "columns": ["NomeS", "Lega", "NomeC", "Capitano"], "primaryKey": ["NomeS", "Lega", "NomeC"] },
-        { "name": "Punteggio", "columns": ["NomeC", "NumeroSerata", "Punti"], "primaryKey": ["NomeC", "NumeroSerata"] }
+        {
+          "name": "Utente",
+          "columns": [
+            "Email",
+            "Nickname",
+            "Cognome",
+            "Nome",
+            "AnnoNascita*"
+          ],
+          "primaryKey": [
+            "Email"
+          ]
+        },
+        {
+          "name": "Cantante",
+          "columns": [
+            "NomeC",
+            "TitoloCanzone",
+            "Baudi"
+          ],
+          "primaryKey": [
+            "NomeC"
+          ]
+        },
+        {
+          "name": "Squadra",
+          "columns": [
+            "NomeS",
+            "Lega",
+            "Email"
+          ],
+          "primaryKey": [
+            "NomeS",
+            "Lega"
+          ]
+        },
+        {
+          "name": "ComposizioneSquadra",
+          "columns": [
+            "NomeS",
+            "Lega",
+            "NomeC",
+            "Capitano"
+          ],
+          "primaryKey": [
+            "NomeS",
+            "Lega",
+            "NomeC"
+          ]
+        },
+        {
+          "name": "Punteggio",
+          "columns": [
+            "NomeC",
+            "NumeroSerata",
+            "Punti"
+          ],
+          "primaryKey": [
+            "NomeC",
+            "NumeroSerata"
+          ]
+        }
       ],
       "constraints": [
         "Squadra(Email) referenzia Utente(Email)",
@@ -121,14 +364,46 @@
       "prompt": "Elencare, senza duplicati e ordinati per cognome e nome, gli utenti di cui non si sa l'eta e che hanno analisi fuori dalla norma. Non usare sottoquery.",
       "solution": "SELECT DISTINCT u.Cognome, u.Nome\nFROM Utente u\nJOIN Referto r ON u.Nome = r.Nome AND u.Cognome = r.Cognome\nJOIN Analisi a ON r.Analisi = a.Nome\nWHERE u.Eta IS NULL AND (r.Valore < a.ValoreMin OR r.Valore > a.ValoreMax)\nORDER BY u.Cognome, u.Nome;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "order by"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["utente", "referto", "analisi"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "order by"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "utente",
+          "referto",
+          "analisi"
+        ],
         "requiresDistinct": true,
         "requiredConcepts": [
-          { "label": "Eta sconosciuta con IS NULL", "patterns": ["eta", "is null"] },
-          { "label": "Confronta valore con intervallo normale", "patterns": ["valore", "valoremin", "valoremax"] },
-          { "label": "Ordina per cognome e nome", "patterns": ["order by", "cognome", "nome"] }
+          {
+            "label": "Eta sconosciuta con IS NULL",
+            "patterns": [
+              "eta",
+              "is null"
+            ]
+          },
+          {
+            "label": "Confronta valore con intervallo normale",
+            "patterns": [
+              "valore",
+              "valoremin",
+              "valoremax"
+            ]
+          },
+          {
+            "label": "Ordina per cognome e nome",
+            "patterns": [
+              "order by",
+              "cognome",
+              "nome"
+            ]
+          }
         ]
       }
     },
@@ -142,15 +417,57 @@
       "prompt": "Trovare, tra le analisi che costano meno di 50 euro, quelle che nel 2024 hanno generato oltre 100 mila euro di ricavi. Mostrare il nome dell'analisi, il ricavo totale e la data in cui e' stata effettuata per l'ultima volta. Non usare sottoquery.",
       "solution": "SELECT a.Nome, SUM(a.Prezzo), MAX(r.Data)\nFROM Referto r\nJOIN Analisi a ON r.Analisi = a.Nome\nWHERE r.Data >= '20240101' AND r.Data <= '20241231' AND a.Prezzo < 50\nGROUP BY a.Nome\nHAVING SUM(a.Prezzo) > 100000;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "group by", "having"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["referto", "analisi"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "group by",
+          "having"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "referto",
+          "analisi"
+        ],
         "requiredConcepts": [
-          { "label": "Filtra anno 2024", "patterns": ["20240101", "20241231"] },
-          { "label": "Filtra prezzo sotto 50", "patterns": ["prezzo", "50"] },
-          { "label": "Calcola ricavo con SUM", "patterns": ["sum", "prezzo"] },
-          { "label": "Data ultima con MAX", "patterns": ["max", "data"] },
-          { "label": "Soglia ricavi in HAVING", "patterns": ["having", "100000"] }
+          {
+            "label": "Filtra anno 2024",
+            "patterns": [
+              "20240101",
+              "20241231"
+            ]
+          },
+          {
+            "label": "Filtra prezzo sotto 50",
+            "patterns": [
+              "prezzo",
+              "50"
+            ]
+          },
+          {
+            "label": "Calcola ricavo con SUM",
+            "patterns": [
+              "sum",
+              "prezzo"
+            ]
+          },
+          {
+            "label": "Data ultima con MAX",
+            "patterns": [
+              "max",
+              "data"
+            ]
+          },
+          {
+            "label": "Soglia ricavi in HAVING",
+            "patterns": [
+              "having",
+              "100000"
+            ]
+          }
         ]
       }
     },
@@ -164,13 +481,37 @@
       "prompt": "Trovare, senza utilizzare operatori aggregati, gli utenti che hanno fatto tutte le analisi per cui non e' richiesto il digiuno. E' possibile utilizzare sottoquery.",
       "solution": "SELECT DISTINCT r.Nome, r.Cognome\nFROM Referto r\nWHERE NOT EXISTS (\n  SELECT *\n  FROM Analisi a\n  WHERE a.Digiuno = FALSE AND a.Nome NOT IN (\n    SELECT r1.Analisi\n    FROM Referto r1\n    WHERE r1.Nome = r.Nome AND r1.Cognome = r.Cognome\n  )\n);",
       "rubric": {
-        "requiredClauses": ["select", "from", "where"],
-        "requiredRelations": ["referto", "analisi"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "where"
+        ],
+        "requiredRelations": [
+          "referto",
+          "analisi"
+        ],
         "requiresDistinct": true,
         "requiredConcepts": [
-          { "label": "Usa pattern universale NOT EXISTS", "patterns": ["not exists"] },
-          { "label": "Considera analisi senza digiuno", "patterns": ["digiuno", "false"] },
-          { "label": "Esclude analisi non fatte dall'utente", "patterns": ["not in", "analisi"] }
+          {
+            "label": "Usa pattern universale NOT EXISTS",
+            "patterns": [
+              "not exists"
+            ]
+          },
+          {
+            "label": "Considera analisi senza digiuno",
+            "patterns": [
+              "digiuno",
+              "false"
+            ]
+          },
+          {
+            "label": "Esclude analisi non fatte dall'utente",
+            "patterns": [
+              "not in",
+              "analisi"
+            ]
+          }
         ]
       }
     },
@@ -184,15 +525,49 @@
       "prompt": "Elencare, in ordine decrescente di nome e strada, tutti gli edifici pubblici di cui si conosce il nome e che sono su una strada che, entro meno di 100 metri di distanza dall'edificio, incrocia una strada secondaria. E' possibile usare ABS(exp). Non usare sottoquery.",
       "solution": "SELECT DISTINCT e.Nome, e.Strada\nFROM Edificio e\nJOIN Incrocio i ON e.Strada = i.Strada1\nWHERE ABS(e.Km - i.KmStrada1) < 0.10\n  AND e.Nome IS NOT NULL\n  AND e.Tipo = 'EdificioPubblico'\nORDER BY e.Nome DESC, e.Strada DESC;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "order by"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["edificio", "incrocio"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "order by"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "edificio",
+          "incrocio"
+        ],
         "requiresDistinct": true,
         "requiredConcepts": [
-          { "label": "Filtra edifici pubblici", "patterns": ["edificiopubblico"] },
-          { "label": "Esclude nomi NULL", "patterns": ["nome", "is not null"] },
-          { "label": "Distanza inferiore a 0.10 km", "patterns": ["abs", "0.10"] },
-          { "label": "Ordina decrescente", "patterns": ["order by", "desc"] }
+          {
+            "label": "Filtra edifici pubblici",
+            "patterns": [
+              "edificiopubblico"
+            ]
+          },
+          {
+            "label": "Esclude nomi NULL",
+            "patterns": [
+              "nome",
+              "is not null"
+            ]
+          },
+          {
+            "label": "Distanza inferiore a 0.10 km",
+            "patterns": [
+              "abs",
+              "0.10"
+            ]
+          },
+          {
+            "label": "Ordina decrescente",
+            "patterns": [
+              "order by",
+              "desc"
+            ]
+          }
         ]
       }
     },
@@ -206,14 +581,51 @@
       "prompt": "Trovare le strade a senso unico piu' corte di 5 Km e interessate da piu' di 20 incroci, sia come strada principale che come strada secondaria. Mostrare nome e lunghezza. Non usare sottoquery.",
       "solution": "SELECT s.Nome, s.Lunghezza\nFROM Strada s\nJOIN Incrocio i ON s.Nome = i.Strada1 OR s.Nome = i.Strada2\nWHERE s.SensoUnico = TRUE AND s.Lunghezza < 5\nGROUP BY s.Nome, s.Lunghezza\nHAVING COUNT(*) > 20;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "group by", "having"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["strada", "incrocio"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "group by",
+          "having"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "strada",
+          "incrocio"
+        ],
         "requiredConcepts": [
-          { "label": "Considera strada principale o secondaria", "patterns": ["strada1", "strada2", "or"] },
-          { "label": "Filtra senso unico", "patterns": ["sensounico"] },
-          { "label": "Filtra lunghezza sotto 5", "patterns": ["lunghezza", "5"] },
-          { "label": "Conta oltre 20 incroci", "patterns": ["having", "count", "20"] }
+          {
+            "label": "Considera strada principale o secondaria",
+            "patterns": [
+              "strada1",
+              "strada2",
+              "or"
+            ]
+          },
+          {
+            "label": "Filtra senso unico",
+            "patterns": [
+              "sensounico"
+            ]
+          },
+          {
+            "label": "Filtra lunghezza sotto 5",
+            "patterns": [
+              "lunghezza",
+              "5"
+            ]
+          },
+          {
+            "label": "Conta oltre 20 incroci",
+            "patterns": [
+              "having",
+              "count",
+              "20"
+            ]
+          }
         ]
       }
     },
@@ -227,12 +639,40 @@
       "prompt": "Tra le strade residenziali, cioe' composte da sole abitazioni, trovare quelle interessate dal maggior numero di incroci. E' possibile utilizzare sottoquery.",
       "solution": "WITH StradeResidenziali AS (\n  SELECT DISTINCT s.Nome\n  FROM Strada s\n  JOIN Edificio e ON s.Nome = e.Strada\n  WHERE e.Tipo = 'Abitazione'\n    AND s.Nome NOT IN (\n      SELECT e2.Strada FROM Edificio e2 WHERE e2.Tipo <> 'Abitazione'\n    )\n), Conteggi AS (\n  SELECT sr.Nome, COUNT(i.Strada1) AS NumIncroci\n  FROM StradeResidenziali sr\n  JOIN Incrocio i ON sr.Nome = i.Strada1 OR sr.Nome = i.Strada2\n  GROUP BY sr.Nome\n)\nSELECT Nome\nFROM Conteggi\nWHERE NumIncroci = (SELECT MAX(NumIncroci) FROM Conteggi);",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "group by"],
-        "requiredRelations": ["strada", "edificio", "incrocio"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "group by"
+        ],
+        "requiredRelations": [
+          "strada",
+          "edificio",
+          "incrocio"
+        ],
         "requiredConcepts": [
-          { "label": "Definisce strade con sole abitazioni", "patterns": ["abitazione", "not in"] },
-          { "label": "Conta incroci in entrambi i ruoli", "patterns": ["strada1", "strada2", "count"] },
-          { "label": "Seleziona il massimo", "patterns": ["max"] }
+          {
+            "label": "Definisce strade con sole abitazioni",
+            "patterns": [
+              "abitazione",
+              "not in"
+            ]
+          },
+          {
+            "label": "Conta incroci in entrambi i ruoli",
+            "patterns": [
+              "strada1",
+              "strada2",
+              "count"
+            ]
+          },
+          {
+            "label": "Seleziona il massimo",
+            "patterns": [
+              "max"
+            ]
+          }
         ]
       }
     },
@@ -246,14 +686,45 @@
       "prompt": "Elencare nome e tipo degli stand che hanno venduto almeno un prodotto senza glutine o per persone vegane che non e' stato pagato con Satispay. Ordinare per nome stand crescente. Non usare sottoquery.",
       "solution": "SELECT DISTINCT s.NomeStand, s.TipoStand\nFROM Stand s\nJOIN Prezzario p ON s.NumeroStand = p.NumeroStand\nJOIN LineaOrdine l ON p.NumeroStand = l.NumeroStand AND p.NomeProdotto = l.NomeProdotto\nJOIN Ordine o ON l.NumeroOrdine = o.NumeroOrdine AND l.DataOrdine = o.DataOrdine\nWHERE (p.VeganOK = TRUE OR p.GlutenFree = TRUE)\n  AND o.TipoPagamento <> 'Satispay'\nORDER BY s.NomeStand;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "order by"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["stand", "prezzario", "lineaordine", "ordine"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "order by"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "stand",
+          "prezzario",
+          "lineaordine",
+          "ordine"
+        ],
         "requiresDistinct": true,
         "requiredConcepts": [
-          { "label": "Filtra vegan o gluten free", "patterns": ["veganok", "glutenfree", "or"] },
-          { "label": "Esclude Satispay", "patterns": ["satispay"] },
-          { "label": "Ordina per NomeStand", "patterns": ["order by", "nomestand"] }
+          {
+            "label": "Filtra vegan o gluten free",
+            "patterns": [
+              "veganok",
+              "glutenfree",
+              "or"
+            ]
+          },
+          {
+            "label": "Esclude Satispay",
+            "patterns": [
+              "satispay"
+            ]
+          },
+          {
+            "label": "Ordina per NomeStand",
+            "patterns": [
+              "order by",
+              "nomestand"
+            ]
+          }
         ]
       }
     },
@@ -267,13 +738,47 @@
       "prompt": "Per ogni ordine relativo ad almeno due diversi stand dello stesso tipo, indicare il prezzo complessivo pagato, suddiviso per tipo di stand. Non usare sottoquery.",
       "solution": "SELECT l.NumeroOrdine, l.DataOrdine, s.TipoStand, SUM(p.Prezzo * l.Quantita)\nFROM LineaOrdine l\nJOIN Prezzario p ON l.NumeroStand = p.NumeroStand AND l.NomeProdotto = p.NomeProdotto\nJOIN Stand s ON l.NumeroStand = s.NumeroStand\nGROUP BY l.NumeroOrdine, l.DataOrdine, s.TipoStand\nHAVING COUNT(DISTINCT s.NumeroStand) >= 2;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "group by", "having"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["lineaordine", "prezzario", "stand"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "group by",
+          "having"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "lineaordine",
+          "prezzario",
+          "stand"
+        ],
         "requiredConcepts": [
-          { "label": "Calcola prezzo per quantita", "patterns": ["prezzo", "quantita"] },
-          { "label": "Raggruppa per ordine e tipo stand", "patterns": ["group by", "numeroordine", "dataordine", "tipostand"] },
-          { "label": "Richiede almeno due stand distinti", "patterns": ["count", "distinct", "numerostand", "2"] }
+          {
+            "label": "Calcola prezzo per quantita",
+            "patterns": [
+              "prezzo",
+              "quantita"
+            ]
+          },
+          {
+            "label": "Raggruppa per ordine e tipo stand",
+            "patterns": [
+              "group by",
+              "numeroordine",
+              "dataordine",
+              "tipostand"
+            ]
+          },
+          {
+            "label": "Richiede almeno due stand distinti",
+            "patterns": [
+              "count",
+              "distinct",
+              "numerostand",
+              "2"
+            ]
+          }
         ]
       }
     },
@@ -287,11 +792,31 @@
       "prompt": "Elencare numero e nome degli stand che hanno venduto tutti i loro prodotti, anche se in ordini diversi. E' possibile utilizzare sottoquery ma non operatori aggregati o insiemistici.",
       "solution": "SELECT s.NumeroStand, s.NomeStand\nFROM Stand s\nWHERE NOT EXISTS (\n  SELECT *\n  FROM Prezzario p\n  WHERE p.NumeroStand = s.NumeroStand\n    AND NOT EXISTS (\n      SELECT *\n      FROM LineaOrdine l\n      WHERE l.NumeroStand = p.NumeroStand\n        AND l.NomeProdotto = p.NomeProdotto\n    )\n);",
       "rubric": {
-        "requiredClauses": ["select", "from", "where"],
-        "requiredRelations": ["stand", "prezzario", "lineaordine"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "where"
+        ],
+        "requiredRelations": [
+          "stand",
+          "prezzario",
+          "lineaordine"
+        ],
         "requiredConcepts": [
-          { "label": "Usa doppio NOT EXISTS", "patterns": ["not exists"] },
-          { "label": "Confronta prodotti del prezzario con linee vendute", "patterns": ["prezzario", "lineaordine", "nomeprodotto"] }
+          {
+            "label": "Usa doppio NOT EXISTS",
+            "patterns": [
+              "not exists"
+            ]
+          },
+          {
+            "label": "Confronta prodotti del prezzario con linee vendute",
+            "patterns": [
+              "prezzario",
+              "lineaordine",
+              "nomeprodotto"
+            ]
+          }
         ]
       }
     },
@@ -305,13 +830,44 @@
       "prompt": "Elencare, senza ripetizioni, codice e titolo dei corsi con lezioni prenotate tramite app da partecipanti adulti o di tipo sconosciuto. Ordinare per totale ore decrescente e titolo crescente.",
       "solution": "SELECT DISTINCT c.Codice, c.Titolo\nFROM Partecipante par\nJOIN Prenotazione pre ON par.Codice = pre.Partecipante\nJOIN Lezione l ON l.Data = pre.Data AND l.Ora = pre.Ora AND l.Struttura = pre.Struttura\nJOIN Corso c ON l.Corso = c.Codice\nWHERE pre.Modalita = 'APP' AND (par.Tipo = 'Adulto' OR par.Tipo IS NULL)\nORDER BY c.TotaleOre DESC, c.Titolo ASC;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "order by"],
-        "requiredRelations": ["partecipante", "prenotazione", "lezione", "corso"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "order by"
+        ],
+        "requiredRelations": [
+          "partecipante",
+          "prenotazione",
+          "lezione",
+          "corso"
+        ],
         "requiresDistinct": true,
         "requiredConcepts": [
-          { "label": "Filtra prenotazioni APP", "patterns": ["modalita", "app"] },
-          { "label": "Adulto o tipo sconosciuto", "patterns": ["adulto", "is null"] },
-          { "label": "Ordina per ore desc e titolo asc", "patterns": ["totaleore", "desc", "titolo", "asc"] }
+          {
+            "label": "Filtra prenotazioni APP",
+            "patterns": [
+              "modalita",
+              "app"
+            ]
+          },
+          {
+            "label": "Adulto o tipo sconosciuto",
+            "patterns": [
+              "adulto",
+              "is null"
+            ]
+          },
+          {
+            "label": "Ordina per ore desc e titolo asc",
+            "patterns": [
+              "totaleore",
+              "desc",
+              "titolo",
+              "asc"
+            ]
+          }
         ]
       }
     },
@@ -325,13 +881,47 @@
       "prompt": "Considerando gli istruttori non dilettanti, elencare il codice dell'istruttore e i titoli dei corsi che hanno almeno una lezione con piu' di 50 prenotati adulti. Non usare sottoquery.",
       "solution": "SELECT i.Codice, c.Titolo\nFROM Partecipante par\nJOIN Prenotazione pre ON par.Codice = pre.Partecipante\nJOIN Lezione l ON l.Data = pre.Data AND l.Ora = pre.Ora AND l.Struttura = pre.Struttura\nJOIN Corso c ON l.Corso = c.Codice\nJOIN Istruttore i ON l.Istruttore = i.Codice\nWHERE i.Qualifica <> 'DIL' AND par.Tipo = 'Adulto'\nGROUP BY i.Codice, c.Codice, c.Titolo, pre.Data, pre.Ora, pre.Struttura\nHAVING COUNT(*) > 50;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "group by", "having"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["partecipante", "prenotazione", "lezione", "corso", "istruttore"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "group by",
+          "having"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "partecipante",
+          "prenotazione",
+          "lezione",
+          "corso",
+          "istruttore"
+        ],
         "requiredConcepts": [
-          { "label": "Esclude dilettanti", "patterns": ["qualifica", "dil"] },
-          { "label": "Filtra adulti", "patterns": ["tipo", "adulto"] },
-          { "label": "Conta piu di 50 per lezione", "patterns": ["having", "count", "50"] }
+          {
+            "label": "Esclude dilettanti",
+            "patterns": [
+              "qualifica",
+              "dil"
+            ]
+          },
+          {
+            "label": "Filtra adulti",
+            "patterns": [
+              "tipo",
+              "adulto"
+            ]
+          },
+          {
+            "label": "Conta piu di 50 per lezione",
+            "patterns": [
+              "having",
+              "count",
+              "50"
+            ]
+          }
         ]
       }
     },
@@ -345,13 +935,47 @@
       "prompt": "Per ogni istruttore professionista, mostrare il numero di corsi in cui in ogni lezione il numero di partecipanti che hanno prenotato tramite app supera il numero di partecipanti che hanno prenotato tramite sito web.",
       "solution": "WITH NumPartecipantiApp AS (\n  SELECT Data, Ora, Struttura, COUNT(*) AS NumPartApp\n  FROM Prenotazione\n  WHERE Modalita = 'APP'\n  GROUP BY Data, Ora, Struttura\n), NumPartecipantiWeb AS (\n  SELECT Data, Ora, Struttura, COUNT(*) AS NumPartWeb\n  FROM Prenotazione\n  WHERE Modalita = 'WEB'\n  GROUP BY Data, Ora, Struttura\n)\nSELECT i.Codice, COUNT(DISTINCT l.Corso)\nFROM Istruttore i\nJOIN Lezione l ON i.Codice = l.Istruttore\nWHERE i.Qualifica = 'PROF'\n  AND NOT EXISTS (\n    SELECT * FROM Lezione l2\n    WHERE l2.Corso = l.Corso AND l2.Istruttore = i.Codice\n      AND COALESCE((SELECT NumPartApp FROM NumPartecipantiApp a WHERE a.Data = l2.Data AND a.Ora = l2.Ora AND a.Struttura = l2.Struttura), 0)\n       <= COALESCE((SELECT NumPartWeb FROM NumPartecipantiWeb w WHERE w.Data = l2.Data AND w.Ora = l2.Ora AND w.Struttura = l2.Struttura), 0)\n  )\nGROUP BY i.Codice;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "group by"],
-        "requiredRelations": ["istruttore", "lezione", "prenotazione"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "group by"
+        ],
+        "requiredRelations": [
+          "istruttore",
+          "lezione",
+          "prenotazione"
+        ],
         "requiredConcepts": [
-          { "label": "Filtra istruttori professionisti", "patterns": ["qualifica", "prof"] },
-          { "label": "Confronta APP e WEB", "patterns": ["app", "web"] },
-          { "label": "Richiede condizione per ogni lezione", "patterns": ["not exists"] },
-          { "label": "Conta corsi distinti", "patterns": ["count", "distinct", "corso"] }
+          {
+            "label": "Filtra istruttori professionisti",
+            "patterns": [
+              "qualifica",
+              "prof"
+            ]
+          },
+          {
+            "label": "Confronta APP e WEB",
+            "patterns": [
+              "app",
+              "web"
+            ]
+          },
+          {
+            "label": "Richiede condizione per ogni lezione",
+            "patterns": [
+              "not exists"
+            ]
+          },
+          {
+            "label": "Conta corsi distinti",
+            "patterns": [
+              "count",
+              "distinct",
+              "corso"
+            ]
+          }
         ]
       }
     },
@@ -365,14 +989,52 @@
       "prompt": "Elencare, tra le squadre che partecipano alla lega PessiNet12, i nomi in ordine alfabetico decrescente delle squadre che hanno come capitani cantanti valutati meno di 15 Baudi o che sono create da utenti che non hanno dichiarato l'anno di nascita. Visualizzare anche nickname ed email. Non usare sottoquery.",
       "solution": "SELECT s.NomeS, u.Nickname, u.Email\nFROM Squadra s\nJOIN ComposizioneSquadra cs ON s.NomeS = cs.NomeS AND s.Lega = cs.Lega\nJOIN Cantante c ON cs.NomeC = c.NomeC\nJOIN Utente u ON s.Email = u.Email\nWHERE s.Lega = 'PessiNet12'\n  AND cs.Capitano = TRUE\n  AND (u.AnnoNascita IS NULL OR c.Baudi < 15)\nORDER BY s.NomeS DESC;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "order by"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["squadra", "composizionesquadra", "cantante", "utente"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "order by"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "squadra",
+          "composizionesquadra",
+          "cantante",
+          "utente"
+        ],
         "requiredConcepts": [
-          { "label": "Filtra la lega PessiNet12", "patterns": ["pessinet12"] },
-          { "label": "Considera solo capitani", "patterns": ["capitano"] },
-          { "label": "Baudi sotto 15 o anno NULL", "patterns": ["baudi", "15", "annonascita", "is null"] },
-          { "label": "Ordina squadre decrescente", "patterns": ["order by", "nomes", "desc"] }
+          {
+            "label": "Filtra la lega PessiNet12",
+            "patterns": [
+              "pessinet12"
+            ]
+          },
+          {
+            "label": "Considera solo capitani",
+            "patterns": [
+              "capitano"
+            ]
+          },
+          {
+            "label": "Baudi sotto 15 o anno NULL",
+            "patterns": [
+              "baudi",
+              "15",
+              "annonascita",
+              "is null"
+            ]
+          },
+          {
+            "label": "Ordina squadre decrescente",
+            "patterns": [
+              "order by",
+              "nomes",
+              "desc"
+            ]
+          }
         ]
       }
     },
@@ -386,13 +1048,50 @@
       "prompt": "Visualizzare le squadre create da utenti maggiorenni o di eta sconosciuta e che valgono in totale piu' di 100 Baudi o che sono composte da piu' di 7 cantanti. Si usi CURRENTYEAR(). Non usare sottoquery.",
       "solution": "SELECT s.NomeS, s.Lega\nFROM Squadra s\nJOIN ComposizioneSquadra cs ON s.NomeS = cs.NomeS AND s.Lega = cs.Lega\nJOIN Cantante c ON cs.NomeC = c.NomeC\nJOIN Utente u ON s.Email = u.Email\nWHERE u.AnnoNascita IS NULL OR CURRENTYEAR() - u.AnnoNascita >= 18\nGROUP BY s.NomeS, s.Lega\nHAVING COUNT(DISTINCT c.NomeC) > 7 OR SUM(c.Baudi) > 100;",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "where", "group by", "having"],
-        "forbiddenClauses": ["subquery"],
-        "requiredRelations": ["squadra", "composizionesquadra", "cantante", "utente"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "where",
+          "group by",
+          "having"
+        ],
+        "forbiddenClauses": [
+          "subquery"
+        ],
+        "requiredRelations": [
+          "squadra",
+          "composizionesquadra",
+          "cantante",
+          "utente"
+        ],
         "requiredConcepts": [
-          { "label": "Maggiorenni o eta sconosciuta", "patterns": ["currentyear", "annonascita", "18", "is null"] },
-          { "label": "Somma baudi oltre 100", "patterns": ["sum", "baudi", "100"] },
-          { "label": "Piu di 7 cantanti distinti", "patterns": ["count", "distinct", "nomec", "7"] }
+          {
+            "label": "Maggiorenni o eta sconosciuta",
+            "patterns": [
+              "currentyear",
+              "annonascita",
+              "18",
+              "is null"
+            ]
+          },
+          {
+            "label": "Somma baudi oltre 100",
+            "patterns": [
+              "sum",
+              "baudi",
+              "100"
+            ]
+          },
+          {
+            "label": "Piu di 7 cantanti distinti",
+            "patterns": [
+              "count",
+              "distinct",
+              "nomec",
+              "7"
+            ]
+          }
         ]
       }
     },
@@ -406,34 +1105,69 @@
       "prompt": "Visualizzare le squadre vincitrici di ogni lega. Risultano vincitrici le squadre per cui e' massima la somma dei punti conquistati dai cantanti nelle serate del Festival. I punti dei capitani valgono doppio.",
       "solution": "WITH PuntiSquadra AS (\n  SELECT cs.NomeS, cs.Lega,\n         SUM(CASE WHEN cs.Capitano = TRUE THEN p.Punti * 2 ELSE p.Punti END) AS PuntiTot\n  FROM ComposizioneSquadra cs\n  JOIN Punteggio p ON cs.NomeC = p.NomeC\n  GROUP BY cs.NomeS, cs.Lega\n)\nSELECT p.NomeS, p.Lega\nFROM PuntiSquadra p\nWHERE p.PuntiTot = (\n  SELECT MAX(p2.PuntiTot)\n  FROM PuntiSquadra p2\n  WHERE p2.Lega = p.Lega\n);",
       "rubric": {
-        "requiredClauses": ["select", "from", "join", "group by", "where"],
-        "requiredRelations": ["composizionesquadra", "punteggio"],
+        "requiredClauses": [
+          "select",
+          "from",
+          "join",
+          "group by",
+          "where"
+        ],
+        "requiredRelations": [
+          "composizionesquadra",
+          "punteggio"
+        ],
         "requiredConcepts": [
-          { "label": "Somma punti per squadra", "patterns": ["sum", "punti"] },
-          { "label": "Raddoppia punti capitano", "patterns": ["capitano", "2"] },
-          { "label": "Trova massimo per lega", "patterns": ["max", "lega"] }
+          {
+            "label": "Somma punti per squadra",
+            "patterns": [
+              "sum",
+              "punti"
+            ]
+          },
+          {
+            "label": "Raddoppia punti capitano",
+            "patterns": [
+              "capitano",
+              "2"
+            ]
+          },
+          {
+            "label": "Trova massimo per lega",
+            "patterns": [
+              "max",
+              "lega"
+            ]
+          }
         ]
       }
     },
     {
-      "id": "2025-06-09-theory-1",
+      "id": "2025-06-09-theory-1-a",
       "section": "theory",
       "examDate": "2025-06-09",
       "databaseId": "bloodymary-2025-06-09",
       "difficulty": "easy",
-      "title": "Teoria 1 - algebra e calcolo su BloodyMary",
-      "prompt": "A. Esprimere in algebra relazionale l'interrogazione: trovare l'analisi con il prezzo piu' basso. B. Esprimere in calcolo relazionale su tuple con dichiarazione di range: elencare gli utenti che hanno solo analisi nella norma.",
-      "solution": "A: si possono togliere dall'insieme delle analisi quelle che hanno prezzo maggiore di qualche altra analisi; restano le analisi a prezzo minimo. B: per ogni referto dell'utente deve esistere l'analisi corrispondente e il valore del referto deve essere compreso tra ValoreMin e ValoreMax.",
-      "profSolution": "A: π_Nome(Analisi) - π_a1.Nome(ρ_a1(Analisi) ⋈_{a1.Prezzo > a2.Prezzo} ρ_a2(Analisi)). Dalle analisi si tolgono quelle che hanno prezzo maggiore di qualche altra analisi.\nB: {u.Nome, u.Cognome | u(Utente) ∧ ∀r(Referto)((r.Nome = u.Nome ∧ r.Cognome = u.Cognome) ⇒ ∃a(Analisi)(a.Nome = r.Analisi ∧ r.Valore > a.ValoreMin ∧ r.Valore < a.ValoreMax))}.",
-      "rubric": {
-        "expectedSymbols": ["π", "−", "∀", "∃"],
-        "expectedKeywords": ["prezzo", "valoremin", "valoremax"],
-        "expectedConcepts": [
-          { "label": "Usa differenza o anti-join per il prezzo minimo", "patterns": ["prezzo"] },
-          { "label": "Esprime tutti i referti dell'utente", "patterns": ["referto"] },
-          { "label": "Controlla intervallo nella norma", "patterns": ["valoremin", "valoremax"] }
-        ]
-      }
+      "title": "Teoria 1A - algebra relazionale su BloodyMary",
+      "prompt": "Esprimere in algebra relazionale l'interrogazione: trovare l'analisi con il prezzo piu' basso.",
+      "solution": "si possono togliere dall'insieme delle analisi quelle che hanno prezzo maggiore di qualche altra analisi; restano le analisi a prezzo minimo.",
+      "profSolution": "π_Nome(Analisi) - π_a1.Nome(ρ_a1(Analisi) ⋈_{a1.Prezzo > a2.Prezzo} ρ_a2(Analisi)). Dalle analisi si tolgono quelle che hanno prezzo maggiore di qualche altra analisi.",
+      "theoryGroup": "theory-1",
+      "theoryPart": "A",
+      "theoryType": "relational"
+    },
+    {
+      "id": "2025-06-09-theory-1-b",
+      "section": "theory",
+      "examDate": "2025-06-09",
+      "databaseId": "bloodymary-2025-06-09",
+      "difficulty": "easy",
+      "title": "Teoria 1B - calcolo relazionale su BloodyMary",
+      "prompt": "Esprimere in calcolo relazionale su tuple con dichiarazione di range: elencare gli utenti che hanno solo analisi nella norma.",
+      "solution": "per ogni referto dell'utente deve esistere l'analisi corrispondente e il valore del referto deve essere compreso tra ValoreMin e ValoreMax.",
+      "profSolution": "{u.Nome, u.Cognome | u(Utente) ∧ ∀r(Referto)((r.Nome = u.Nome ∧ r.Cognome = u.Cognome) ⇒ ∃a(Analisi)(a.Nome = r.Analisi ∧ r.Valore > a.ValoreMin ∧ r.Valore < a.ValoreMax))}.",
+      "theoryGroup": "theory-1",
+      "theoryPart": "B",
+      "theoryType": "relational"
     },
     {
       "id": "2025-06-09-theory-2",
@@ -445,15 +1179,8 @@
       "prompt": "Dati R(A, B, C, D, E, F, G) e F = {D -> BG, C -> ABF, BC -> DE, G -> CD}, dire se R e' in 3NF e, se non lo e', decomporla in relazioni in 3NF esplicitando i passaggi. Dire se lo schema 3NF e' anche BCNF.",
       "solution": "Le chiavi candidate sono C, D e G. Ogni dipendenza funzionale ha a sinistra una superchiave, quindi R e' gia' in 3NF ed e' anche in BCNF. Non serve decomporre.",
       "profSolution": "Chiavi candidate: C, D e G. R e' in 3NF e in BCNF perche' il lato sinistro di ogni dipendenza funzionale e' una superchiave. Non serve decomporre.",
-      "rubric": {
-        "expectedSymbols": ["→"],
-        "expectedKeywords": ["chiavi", "3nf", "bcnf"],
-        "expectedConcepts": [
-          { "label": "Trova le chiavi C, D e G", "patterns": ["c", "d", "g"] },
-          { "label": "Riconosce antecedenti superchiave", "patterns": ["superchiave"] },
-          { "label": "Conclude che non serve decomposizione", "patterns": ["non", "decompor"] }
-        ]
-      }
+      "theoryGroup": "theory-2",
+      "theoryType": "dependencies"
     },
     {
       "id": "2025-06-09-theory-3",
@@ -465,35 +1192,36 @@
       "prompt": "Con i dati quantitativi dati nell'appello, disegnare gli alberi sintattici prima e dopo l'ottimizzazione logica e calcolare le tuple mosse per la query: sigma data='20250609' AND tipo='ematologia' AND digiuno=True (referto join analisi).",
       "solution": "L'ottimizzazione spinge la selezione su data verso Referto e le selezioni tipo/digiuno verso Analisi prima del join. Il costo passa da circa 7.300.000 tuple mosse prima dell'ottimizzazione a circa 39.000 dopo.",
       "profSolution": "Query ottimizzata: σ_{Data='20250609'}(Referto) ⋈_{Analisi=Analisi.Nome} σ_{Tipo='ematologia' ∧ Digiuno=True}(Analisi). Costo prima: 7.300.000 + 36.500 ≈ 7.300.000. Dopo: Referto 100 tuple, Analisi 25 tuple, join 2.500, totale ≈ 39.000.",
-      "rubric": {
-        "expectedSymbols": ["σ", "⋈"],
-        "expectedKeywords": ["ottimizzazione", "selezione", "join"],
-        "expectedConcepts": [
-          { "label": "Spinge le selezioni alle foglie", "patterns": ["selezion"] },
-          { "label": "Calcola cardinalita filtrata di referto", "patterns": ["365"] },
-          { "label": "Confronta costo prima e dopo", "patterns": ["costo"] }
-        ]
-      }
+      "theoryGroup": "theory-3",
+      "theoryType": "optimization"
     },
     {
-      "id": "2025-07-09-theory-1",
+      "id": "2025-07-09-theory-1-a",
       "section": "theory",
       "examDate": "2025-07-09",
       "databaseId": "deebeecity-2025-07-09",
       "difficulty": "easy",
-      "title": "Teoria 1 - algebra e calcolo su DeeBeeCity",
-      "prompt": "A. Esprimere in algebra relazionale: trovare le strade a senso unico che hanno tutti i tipi di edificio. B. Esprimere in calcolo relazionale su tuple: elencare le strade principali lunghe piu' di un chilometro e con un solo incrocio.",
-      "solution": "A: usare il quoziente tra le coppie strada/tipo presenti negli edifici delle strade a senso unico e l'insieme di tutti i tipi di edificio. B: selezionare strade con lunghezza > 1, almeno un incrocio come Strada1 e nessun altro incrocio in cui la strada compaia come principale o secondaria.",
-      "profSolution": "A: π_Nome(σ_SensoUnico=True(Strada) ⋈ Edificio)[Nome,Tipo] ÷ π_Tipo(Edificio). Il quoziente restituisce le strade a senso unico associate a tutti i tipi di edificio.\nB: {s.Nome | s(Strada) ∧ s.Lunghezza > 1 ∧ ∃i(Incrocio)(s.Nome = i.Strada1 ∧ ¬∃i2(Incrocio)((i.Strada1 = i2.Strada1 ∧ i.Strada2 <> i2.Strada2) ∨ i.Strada1 = i2.Strada2))}.",
-      "rubric": {
-        "expectedSymbols": ["π", "σ", "÷", "∃", "¬"],
-        "expectedKeywords": ["sensounico", "tipo", "incrocio"],
-        "expectedConcepts": [
-          { "label": "Usa divisione per tutti i tipi", "patterns": ["tipo"] },
-          { "label": "Filtra strade a senso unico", "patterns": ["sensounico"] },
-          { "label": "Impone un solo incrocio come strada principale", "patterns": ["incrocio"] }
-        ]
-      }
+      "title": "Teoria 1A - algebra relazionale su DeeBeeCity",
+      "prompt": "Esprimere in algebra relazionale: trovare le strade a senso unico che hanno tutti i tipi di edificio.",
+      "solution": "usare il quoziente tra le coppie strada/tipo presenti negli edifici delle strade a senso unico e l'insieme di tutti i tipi di edificio.",
+      "profSolution": "π_Nome(σ_SensoUnico=True(Strada) ⋈ Edificio)[Nome,Tipo] ÷ π_Tipo(Edificio). Il quoziente restituisce le strade a senso unico associate a tutti i tipi di edificio.",
+      "theoryGroup": "theory-1",
+      "theoryPart": "A",
+      "theoryType": "relational"
+    },
+    {
+      "id": "2025-07-09-theory-1-b",
+      "section": "theory",
+      "examDate": "2025-07-09",
+      "databaseId": "deebeecity-2025-07-09",
+      "difficulty": "easy",
+      "title": "Teoria 1B - calcolo relazionale su DeeBeeCity",
+      "prompt": "Esprimere in calcolo relazionale su tuple: elencare le strade principali lunghe piu' di un chilometro e con un solo incrocio.",
+      "solution": "selezionare strade con lunghezza > 1, almeno un incrocio come Strada1 e nessun altro incrocio in cui la strada compaia come principale o secondaria.",
+      "profSolution": "{s.Nome | s(Strada) ∧ s.Lunghezza > 1 ∧ ∃i(Incrocio)(s.Nome = i.Strada1 ∧ ¬∃i2(Incrocio)((i.Strada1 = i2.Strada1 ∧ i.Strada2 <> i2.Strada2) ∨ i.Strada1 = i2.Strada2))}.",
+      "theoryGroup": "theory-1",
+      "theoryPart": "B",
+      "theoryType": "relational"
     },
     {
       "id": "2025-07-09-theory-2",
@@ -505,16 +1233,8 @@
       "prompt": "Data R(ABCDEF) e F = {AB -> CE, A -> B, C -> B, C -> AF}, dire se R e' in 3NF rispetto a F motivando la risposta. Se non lo e', scomporla in 3NF esplicitando tutti i passi. Dire se il risultato e' BCNF.",
       "solution": "Le chiavi sono AD e CD. R non e' in 3NF. Una copertura minimale porta a dipendenze raggruppate A -> CE e C -> ABF; una decomposizione possibile e' R1(ACE), R2(CABF) e una relazione con una chiave, per esempio R3(AD). Il risultato non e' BCNF.",
       "profSolution": "Chiavi: AD e CD. R non e' in 3NF. Copertura minimale: F'' = {A -> C, A -> E, C -> B, C -> A, C -> F}; raggruppata: {A -> CE, C -> ABF}. Decomposizione 3NF: R1(ACE), R2(CABF), R3(AD). Non e' BCNF: ad esempio C -> A in R1 non ha C superchiave.",
-      "rubric": {
-        "expectedSymbols": ["→"],
-        "expectedKeywords": ["copertura minimale", "chiavi", "3nf", "bcnf"],
-        "expectedConcepts": [
-          { "label": "Trova chiavi AD e CD", "patterns": ["ad", "cd"] },
-          { "label": "Rimuove attributi estranei/ridondanze", "patterns": ["ridond"] },
-          { "label": "Aggiunge relazione con chiave", "patterns": ["chiave"] },
-          { "label": "Conclude non BCNF", "patterns": ["bcnf"] }
-        ]
-      }
+      "theoryGroup": "theory-2",
+      "theoryType": "dependencies"
     },
     {
       "id": "2025-07-09-theory-3",
@@ -526,35 +1246,36 @@
       "prompt": "Considerare la storia S = r1(x), r2(x), r3(x), w2(y), w3(x), w1(z), r3(z), w3(z). Dire se S e' compatibile con il protocollo 2PL e giustificare la risposta.",
       "solution": "La storia e' compatibile con 2PL: si puo' aggiungere una sequenza di lock condivisi/esclusivi e unlock tale che ogni transazione acquisisca lock solo nella fase crescente e li rilasci nella fase calante.",
       "profSolution": "S e' compatibile con 2PL. Un possibile schedule con lock: LS1(x), r1(x), LS2(x), r2(x), LS3(x), r3(x), LX2(y), w2(y), LX1(z), UN1(x), UN2(x,y), LX3(x), w3(x), w1(z), UN1(z), LX3(z), r3(z), w3(z), UN3(x,z).",
-      "rubric": {
-        "expectedSymbols": [],
-        "expectedKeywords": ["2pl", "lock", "unlock"],
-        "expectedConcepts": [
-          { "label": "Distingue fase crescente e calante", "patterns": ["fase"] },
-          { "label": "Propone lock condivisi/esclusivi coerenti", "patterns": ["lock"] },
-          { "label": "Conclude compatibilita della storia", "patterns": ["compatib"] }
-        ]
-      }
+      "theoryGroup": "theory-3",
+      "theoryType": "transactions"
     },
     {
-      "id": "2025-09-10-theory-1",
+      "id": "2025-09-10-theory-1-a",
       "section": "theory",
       "examDate": "2025-09-10",
       "databaseId": "sagrabugliano-2025-09-10",
       "difficulty": "easy",
-      "title": "Teoria 1 - algebra e calcolo su SagraBugliano",
-      "prompt": "A. Esprimere in algebra relazionale: elencare gli stand che non vendono alcun prodotto senza glutine, cioe' vendono solo prodotti con il glutine. B. Esprimere in calcolo relazionale su tuple: elencare numero, data e ora degli ordini riguardanti solo prodotti per persone vegane.",
-      "solution": "A: proiettare gli stand dal prezzario e sottrarre quelli che hanno almeno un prodotto GlutenFree. B: selezionare ordini per cui esiste almeno una linea e non esiste una linea dell'ordine collegata a un prodotto con VeganOK = FALSE.",
-      "profSolution": "A: π_NumeroStand(Prezzario) - π_NumeroStand(σ_GlutenFree=True(Prezzario)).\nB: {o.NumeroOrdine, o.DataOrdine, o.OraOrdine | o(Ordine) ∧ ∃l(LineaOrdine)(l.NumeroOrdine=o.NumeroOrdine ∧ l.DataOrdine=o.DataOrdine ∧ ¬∃l2(LineaOrdine)(l2.NumeroOrdine=o.NumeroOrdine ∧ l2.DataOrdine=o.DataOrdine ∧ ∃p(Prezzario)(p.NumeroStand=l2.NumeroStand ∧ p.NomeProdotto=l2.NomeProdotto ∧ p.VeganOK=FALSE)))}.",
-      "rubric": {
-        "expectedSymbols": ["π", "−", "∃", "¬"],
-        "expectedKeywords": ["glutenfree", "veganok", "ordine"],
-        "expectedConcepts": [
-          { "label": "Usa differenza per escludere gluten free", "patterns": ["glutenfree"] },
-          { "label": "Usa non esistenza per prodotti non vegan", "patterns": ["veganok"] },
-          { "label": "Restituisce numero data e ora ordine", "patterns": ["ordine"] }
-        ]
-      }
+      "title": "Teoria 1A - algebra relazionale su SagraBugliano",
+      "prompt": "Esprimere in algebra relazionale: elencare gli stand che non vendono alcun prodotto senza glutine, cioe' vendono solo prodotti con il glutine.",
+      "solution": "proiettare gli stand dal prezzario e sottrarre quelli che hanno almeno un prodotto GlutenFree.",
+      "profSolution": "π_NumeroStand(Prezzario) - π_NumeroStand(σ_GlutenFree=True(Prezzario)).",
+      "theoryGroup": "theory-1",
+      "theoryPart": "A",
+      "theoryType": "relational"
+    },
+    {
+      "id": "2025-09-10-theory-1-b",
+      "section": "theory",
+      "examDate": "2025-09-10",
+      "databaseId": "sagrabugliano-2025-09-10",
+      "difficulty": "easy",
+      "title": "Teoria 1B - calcolo relazionale su SagraBugliano",
+      "prompt": "Esprimere in calcolo relazionale su tuple: elencare numero, data e ora degli ordini riguardanti solo prodotti per persone vegane.",
+      "solution": "selezionare ordini per cui esiste almeno una linea e non esiste una linea dell'ordine collegata a un prodotto con VeganOK = FALSE.",
+      "profSolution": "{o.NumeroOrdine, o.DataOrdine, o.OraOrdine | o(Ordine) ∧ ∃l(LineaOrdine)(l.NumeroOrdine=o.NumeroOrdine ∧ l.DataOrdine=o.DataOrdine ∧ ¬∃l2(LineaOrdine)(l2.NumeroOrdine=o.NumeroOrdine ∧ l2.DataOrdine=o.DataOrdine ∧ ∃p(Prezzario)(p.NumeroStand=l2.NumeroStand ∧ p.NomeProdotto=l2.NomeProdotto ∧ p.VeganOK=FALSE)))}.",
+      "theoryGroup": "theory-1",
+      "theoryPart": "B",
+      "theoryType": "relational"
     },
     {
       "id": "2025-09-10-theory-2",
@@ -566,15 +1287,8 @@
       "prompt": "Dimostrare che F1 = {A -> CE, C -> AB, AE -> F} e F2 = {AB -> CE, A -> B, C -> B, C -> AF} sono equivalenti usando le coperture minimali.",
       "solution": "Calcolare le coperture minimali in forma canonica. Per F1 si ottiene una copertura equivalente con A -> C, A -> E, A -> F, C -> A, C -> B; per F2 si confrontano le dipendenze non comuni tramite chiusure. Le dipendenze mancanti sono implicate reciprocamente, quindi gli insiemi sono equivalenti.",
       "profSolution": "Coperture minimali: F1' = {A -> C, A -> E, A -> F, C -> A, C -> B}; F2' = {A -> B, A -> C, A -> E, C -> A, C -> B, C -> F}. Le dipendenze non comuni si ottengono per chiusura: A -> F da F2' e A -> B, C -> F da F1'. Quindi F1 e F2 sono equivalenti.",
-      "rubric": {
-        "expectedSymbols": ["→"],
-        "expectedKeywords": ["copertura minimale", "chiusura", "equivalenti"],
-        "expectedConcepts": [
-          { "label": "Porta le dipendenze in forma canonica", "patterns": ["canonica"] },
-          { "label": "Confronta tramite chiusure", "patterns": ["chiusur"] },
-          { "label": "Conclude equivalenza reciproca", "patterns": ["equivalent"] }
-        ]
-      }
+      "theoryGroup": "theory-2",
+      "theoryType": "dependencies"
     },
     {
       "id": "2025-09-10-theory-3",
@@ -586,35 +1300,36 @@
       "prompt": "Con i dati quantitativi dati nell'appello, disegnare gli alberi prima e dopo l'ottimizzazione logica e calcolare le tuple mosse per la query con selezioni su Quantita >= 6, TipoPagamento <> 'contanti' e NomeProdotto = 'pizza ananas' su LineaOrdine join Ordine.",
       "solution": "L'ottimizzazione spinge Quantita/NomeProdotto su LineaOrdine e TipoPagamento su Ordine prima del join. Il costo passa da circa 5 x 10^10 tuple mosse a circa 2 x 10^8.",
       "profSolution": "Query ottimizzata: σ_{Quantita>=6 ∧ NomeProdotto='Pizza ananas'}(LineaOrdine) ⋈ σ_{TipoPagamento<>'contanti'}(Ordine). Costo prima: circa 5 x 10^10. Dopo: LineaOrdine filtrata 2.500 tuple, Ordine filtrato 80.000 tuple, join circa 2 x 10^8.",
-      "rubric": {
-        "expectedSymbols": ["σ", "⋈"],
-        "expectedKeywords": ["ottimizzazione", "selezione", "join"],
-        "expectedConcepts": [
-          { "label": "Spinge selezioni sulle relazioni corrette", "patterns": ["selezion"] },
-          { "label": "Stima selettivita di Quantita e NomeProdotto", "patterns": ["quantita", "nomeprodotto"] },
-          { "label": "Confronta costo prima e dopo", "patterns": ["costo"] }
-        ]
-      }
+      "theoryGroup": "theory-3",
+      "theoryType": "optimization"
     },
     {
-      "id": "2025-12-17-theory-1",
+      "id": "2025-12-17-theory-1-a",
       "section": "theory",
       "examDate": "2025-12-17",
       "databaseId": "nonsolosport-2025-12-17",
       "difficulty": "easy",
-      "title": "Teoria 1 - algebra e calcolo su Non Solo Sport",
-      "prompt": "A. Esprimere in algebra relazionale: elencare i codici dei partecipanti che hanno prenotato tramite app tutte le lezioni del corso con titolo 'Calcio Binario'. B. Esprimere in calcolo relazionale su tuple: elencare titolo e ore totali dei corsi che hanno lezioni tenute da almeno due istruttori diversi.",
-      "solution": "A: usare il quoziente tra le prenotazioni tramite APP e l'insieme delle lezioni del corso Calcio Binario. B: selezionare corsi per cui esistono due lezioni dello stesso corso con istruttori diversi.",
-      "profSolution": "A: π_Partecipante(σ_Modalita='APP'(Prenotazione) ⋈ Lezione) ÷ π_Data,Ora,Struttura(σ_Titolo='Calcio Binario'(Corso ⋈ Lezione)).\nB: {c.Titolo, c.TotaleOre | c(Corso) ∧ ∃l(Lezione)(l.Corso=c.Codice ∧ ∃l2(Lezione)(l2.Corso=c.Codice ∧ l.Istruttore <> l2.Istruttore))}.",
-      "rubric": {
-        "expectedSymbols": ["π", "σ", "÷", "∃", "≠"],
-        "expectedKeywords": ["app", "calcio binario", "istruttore"],
-        "expectedConcepts": [
-          { "label": "Usa divisione per tutte le lezioni", "patterns": ["lezioni"] },
-          { "label": "Filtra prenotazioni APP", "patterns": ["app"] },
-          { "label": "Trova due istruttori diversi", "patterns": ["istruttor"] }
-        ]
-      }
+      "title": "Teoria 1A - algebra relazionale su Non Solo Sport",
+      "prompt": "Esprimere in algebra relazionale: elencare i codici dei partecipanti che hanno prenotato tramite app tutte le lezioni del corso con titolo 'Calcio Binario'.",
+      "solution": "usare il quoziente tra le prenotazioni tramite APP e l'insieme delle lezioni del corso Calcio Binario.",
+      "profSolution": "π_Partecipante(σ_Modalita='APP'(Prenotazione) ⋈ Lezione) ÷ π_Data,Ora,Struttura(σ_Titolo='Calcio Binario'(Corso ⋈ Lezione)).",
+      "theoryGroup": "theory-1",
+      "theoryPart": "A",
+      "theoryType": "relational"
+    },
+    {
+      "id": "2025-12-17-theory-1-b",
+      "section": "theory",
+      "examDate": "2025-12-17",
+      "databaseId": "nonsolosport-2025-12-17",
+      "difficulty": "easy",
+      "title": "Teoria 1B - calcolo relazionale su Non Solo Sport",
+      "prompt": "Esprimere in calcolo relazionale su tuple: elencare titolo e ore totali dei corsi che hanno lezioni tenute da almeno due istruttori diversi.",
+      "solution": "selezionare corsi per cui esistono due lezioni dello stesso corso con istruttori diversi.",
+      "profSolution": "{c.Titolo, c.TotaleOre | c(Corso) ∧ ∃l(Lezione)(l.Corso=c.Codice ∧ ∃l2(Lezione)(l2.Corso=c.Codice ∧ l.Istruttore <> l2.Istruttore))}.",
+      "theoryGroup": "theory-1",
+      "theoryPart": "B",
+      "theoryType": "relational"
     },
     {
       "id": "2025-12-17-theory-2",
@@ -626,15 +1341,8 @@
       "prompt": "Data R(ABCDEF), dire se R e' in 3NF rispetto a {AB -> CE, A -> B, C -> B, C -> AF}. Se non lo e', scomporla in 3NF esplicitando tutti i passi.",
       "solution": "D deve appartenere a ogni chiave; le chiavi sono AD e CD. R non e' in 3NF. Una copertura minimale porta a A -> C, A -> E, C -> B, C -> A, C -> F. Si decompone in R1(ACE), R2(CABF) e si aggiunge una relazione con una chiave, per esempio R3(AD).",
       "profSolution": "D compare in ogni chiave; chiavi AD e CD. R non e' in 3NF. Copertura canonica iniziale: {AB -> C, AB -> E, A -> B, C -> B, C -> A, C -> F}. B e' estraneo in AB -> C/E, poi A -> B e' ridondante via A -> C e C -> B. Copertura minimale: {A -> C, A -> E, C -> B, C -> A, C -> F}. Decomposizione: R1(ACE), R2(CABF), R3(AD).",
-      "rubric": {
-        "expectedSymbols": ["→"],
-        "expectedKeywords": ["chiavi", "copertura minimale", "3nf"],
-        "expectedConcepts": [
-          { "label": "Riconosce che D e' in ogni chiave", "patterns": ["d"] },
-          { "label": "Trova chiavi AD e CD", "patterns": ["ad", "cd"] },
-          { "label": "Produce decomposizione con relazione chiave", "patterns": ["r3", "ad"] }
-        ]
-      }
+      "theoryGroup": "theory-2",
+      "theoryType": "dependencies"
     },
     {
       "id": "2025-12-17-theory-3",
@@ -646,35 +1354,36 @@
       "prompt": "Con i dati quantitativi dati nell'appello, disegnare gli alberi prima e dopo l'ottimizzazione logica e calcolare le tuple mosse per la query: sigma Qualifica <> 'PROF' AND Corso='CB' AND Struttura='A100' (Lezione join Istruttore).",
       "solution": "L'ottimizzazione spinge Qualifica su Istruttore e Corso/Struttura su Lezione prima del join. Il costo passa da circa 5 x 10^5 tuple mosse a circa 6 x 10^3.",
       "profSolution": "Query ottimizzata: σ_{Qualifica <> 'PROF'}(Istruttore) ⋈_{Istruttore=Codice} σ_{Corso='CB' ∧ Struttura='A100'}(Lezione). Costo prima: 500.000 + 5.000 ≈ 5 x 10^5. Dopo: Istruttore 80 tuple, Lezione 10 tuple, join 800, totale circa 5.900 ≈ 6 x 10^3.",
-      "rubric": {
-        "expectedSymbols": ["σ", "⋈"],
-        "expectedKeywords": ["ottimizzazione", "qualifica", "corso", "struttura"],
-        "expectedConcepts": [
-          { "label": "Spinge Qualifica su Istruttore", "patterns": ["qualifica", "istruttore"] },
-          { "label": "Spinge Corso e Struttura su Lezione", "patterns": ["corso", "struttura"] },
-          { "label": "Confronta costo prima e dopo", "patterns": ["costo"] }
-        ]
-      }
+      "theoryGroup": "theory-3",
+      "theoryType": "optimization"
     },
     {
-      "id": "2026-01-23-theory-1",
+      "id": "2026-01-23-theory-1-a",
       "section": "theory",
       "examDate": "2026-01-23",
       "databaseId": "fantasanremo-2026-01-23",
       "difficulty": "easy",
-      "title": "Teoria 1 - algebra e calcolo su FantaSanremo",
-      "prompt": "A. Esprimere in algebra relazionale: elencare le email degli utenti con anno di nascita non nullo che hanno iscritto al Fantasanremo una e una sola squadra. B. Esprimere in calcolo relazionale su tuple: elencare nome e canzone dei cantanti che hanno ottenuto solo punteggi minori di 5 nelle serate in cui hanno partecipato.",
-      "solution": "A: proiettare le email degli utenti con AnnoNascita non NULL che compaiono in Squadra e sottrarre gli utenti che compaiono in due squadre diverse. B: usare una formula con quantificazione universale sui punteggi del cantante: per ogni punteggio associato al cantante, Punti < 5.",
-      "profSolution": "A: π_Email(σ_AnnoNascita IS NOT NULL(Utente ⋈ Squadra)) - π_s1.Email(ρ_s1(Squadra) ⋈_{s1.Email=s2.Email ∧ (s1.NomeS<>s2.NomeS ∨ s1.Lega<>s2.Lega)} ρ_s2(Squadra)).\nB: {c.NomeC, c.TitoloCanzone | c(Cantante) ∧ ∀p(Punteggio)(p.NomeC=c.NomeC ⇒ p.Punti < 5)}.",
-      "rubric": {
-        "expectedSymbols": ["π", "−", "∀"],
-        "expectedKeywords": ["annonascita", "email"],
-        "expectedConcepts": [
-          { "label": "Esclude utenti con anno nascita NULL", "patterns": ["annonascita"] },
-          { "label": "Riconosce una sola squadra tramite differenza o non esistenza di seconda squadra", "patterns": ["squadra"] },
-          { "label": "Usa universale per tutti i punteggi", "patterns": ["punti", "5"] }
-        ]
-      }
+      "title": "Teoria 1A - algebra relazionale su FantaSanremo",
+      "prompt": "Esprimere in algebra relazionale: elencare le email degli utenti con anno di nascita non nullo che hanno iscritto al Fantasanremo una e una sola squadra.",
+      "solution": "proiettare le email degli utenti con AnnoNascita non NULL che compaiono in Squadra e sottrarre gli utenti che compaiono in due squadre diverse.",
+      "profSolution": "π_Email(σ_AnnoNascita IS NOT NULL(Utente ⋈ Squadra)) - π_s1.Email(ρ_s1(Squadra) ⋈_{s1.Email=s2.Email ∧ (s1.NomeS<>s2.NomeS ∨ s1.Lega<>s2.Lega)} ρ_s2(Squadra)).",
+      "theoryGroup": "theory-1",
+      "theoryPart": "A",
+      "theoryType": "relational"
+    },
+    {
+      "id": "2026-01-23-theory-1-b",
+      "section": "theory",
+      "examDate": "2026-01-23",
+      "databaseId": "fantasanremo-2026-01-23",
+      "difficulty": "easy",
+      "title": "Teoria 1B - calcolo relazionale su FantaSanremo",
+      "prompt": "Esprimere in calcolo relazionale su tuple: elencare nome e canzone dei cantanti che hanno ottenuto solo punteggi minori di 5 nelle serate in cui hanno partecipato.",
+      "solution": "usare una formula con quantificazione universale sui punteggi del cantante: per ogni punteggio associato al cantante, Punti < 5.",
+      "profSolution": "{c.NomeC, c.TitoloCanzone | c(Cantante) ∧ ∀p(Punteggio)(p.NomeC=c.NomeC ⇒ p.Punti < 5)}.",
+      "theoryGroup": "theory-1",
+      "theoryPart": "B",
+      "theoryType": "relational"
     },
     {
       "id": "2026-01-23-theory-2",
@@ -686,15 +1395,8 @@
       "prompt": "Data R(L, M, N, O, P, Q), dire quali dipendenze funzionali determinano la decomposizione 3NF: R1(L,N,P) con N -> L nella restrizione, R2(N,L,M,Q) con L -> N e Q -> N nella restrizione, R3(L,O). Dire infine quali sono le chiavi di R.",
       "solution": "Una possibile ricostruzione e' F = {L -> NP, N -> LMQ, Q -> N}. Poiche' O non compare nei conseguenti deve stare in ogni chiave. Le chiavi candidate sono LO, NO e QO.",
       "profSolution": "Una possibile ricostruzione e' F = {L -> NP, N -> LMQ, Q -> N}. Poiche' O non compare nei conseguenti, O deve stare in ogni chiave. Le chiavi candidate sono LO, NO e QO.",
-      "rubric": {
-        "expectedSymbols": ["→"],
-        "expectedKeywords": ["decomposizione", "chiavi"],
-        "expectedConcepts": [
-          { "label": "Ricostruisce L -> NP", "patterns": ["l", "np"] },
-          { "label": "Ricostruisce N -> LMQ e Q -> N", "patterns": ["lmq", "q"] },
-          { "label": "Individua chiavi LO, NO e QO", "patterns": ["lo", "no", "qo"] }
-        ]
-      }
+      "theoryGroup": "theory-2",
+      "theoryType": "dependencies"
     },
     {
       "id": "2026-01-23-theory-3",
@@ -706,15 +1408,8 @@
       "prompt": "a) Quali sono le caratteristiche del protocollo 2PL? b) Dire se la storia S = r1(y), r2(y), r3(y), w2(x), w3(y), w1(z), r3(z), w3(z) e' 2PL, giustificando con riferimento alla definizione.",
       "solution": "2PL prevede una fase crescente, in cui una transazione acquisisce lock, e una fase calante, in cui rilascia lock senza acquisirne di nuovi. La storia e' compatibile: si puo' aggiungere una sequenza di lock condivisi/esclusivi e unlock rispettando le due fasi per ogni transazione.",
       "profSolution": "a) 2PL: ogni transazione ha una fase crescente, in cui acquisisce lock, e una fase calante, in cui rilascia lock e non acquisisce piu' nulla. b) La storia e' compatibile. Un possibile schedule: LS1(y), r1(y), LS2(y), r2(y), LS3(y), r3(y), LX2(x), w2(x), UL2(x), UL2(y), LX1(z), UL1(y), LX3(y), w3(y), w1(z), UL1(z), LX3(z), r3(z), w3(z), UL3(y,z).",
-      "rubric": {
-        "expectedSymbols": [],
-        "expectedKeywords": ["2pl", "lock", "unlock"],
-        "expectedConcepts": [
-          { "label": "Definisce fase crescente", "patterns": ["fase", "crescente"] },
-          { "label": "Definisce fase calante", "patterns": ["fase", "calante"] },
-          { "label": "Giustifica compatibilita della storia", "patterns": ["compatib"] }
-        ]
-      }
+      "theoryGroup": "theory-3",
+      "theoryType": "transactions"
     }
   ]
 }
